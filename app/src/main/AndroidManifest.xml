@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.xidaiw.btj">
+
+    <!-- Required  一些系统要求的权限，如访问网络等 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="com.bbuwin.mobile.app.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <!-- Optional for location -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <!-- app请求联网的权限 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 判断网络状态权限 -->
+    <!-- 添加可以向外拨打电话的权限 -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <!-- 手机震动权限 -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- SD卡权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <application
+        android:name="xidaiw.MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/icon150x150"
+        android:label="喜袋网_原生"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name="xidaiw.index.activity.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="xidaiw.mine.activity.LoginActivity" />
+        <activity android:name="xidaiw.mine.activity.SafeCenterActivity" />
+        <activity android:name="xidaiw.mine.activity.CertificationActivity" />
+        <activity android:name="xidaiw.mine.activity.CertificateAfterActivity" />
+        <!--
+ ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity android:name="xidaiw.mine.activity.BindBankCardActivity" />
+        <activity android:name="xidaiw.mine.activity.ForgetPasswordActivity" />
+        <activity android:name="xidaiw.mine.activity.EditPasswordActivity" />
+        <activity android:name="xidaiw.mine.activity.ResetPasswordActivity" />
+        <activity android:name="xidaiw.mine.activity.EditPayPasswordActivity" />
+        <activity android:name="xidaiw.mine.activity.ResetPayPasswordActivity" />
+        <activity android:name="xidaiw.mine.activity.ForgetPayPasswordActivity" />
+        <activity android:name="xidaiw.index.activity.BannerViewActivity" />
+        <activity android:name="xidaiw.index.activity.InviteAwardActivity"/>
+        <!--这是QQ分享添加的两个AuthActivity和AssistActivity-->
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:noHistory="true"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="tencent1106268541" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.tencent.connect.common.AssistActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
+        <activity android:name="xidaiw.index.activity.NewhandGuideActivity" />
+        <activity android:name="xidaiw.index.activity.MessageCenter" />
+        <activity android:name="xidaiw.index.activity.SiginActivity"></activity>
+    </application>
+
+</manifest>

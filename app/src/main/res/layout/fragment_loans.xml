@@ -1,0 +1,23 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="xidaiw.index.fragment.FragmentLoans">
+
+    <!--     ptr:ptrAnimationStyle="flip"  flip:翻转  rotate:旋转-->
+    <!--     ptr:ptrShowIndicator="true"  右上角 右下角出现箭头-->
+    <!-- TODO: Update blank fragment layout -->
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="#ffffff"
+        android:dividerHeight="1dp"
+        ptr:ptrDrawable="@drawable/default_ptr_flip"
+        ptr:ptrAnimationStyle="flip"
+        ptr:ptrHeaderBackground="#FFFFFF"
+        ptr:ptrHeaderTextColor="@color/gray"
+        >
+    </com.handmark.pulltorefresh.library.PullToRefreshListView>
+</FrameLayout>

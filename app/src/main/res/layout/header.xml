@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="35dp">
+    <LinearLayout
+        android:orientation="horizontal"
+
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:clickable="true"
+            android:paddingTop="2dp"
+            android:id="@+id/iv_back"
+            android:paddingLeft="15dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@mipmap/back"/>
+        <TextView
+            android:id="@+id/tv_title"
+            android:paddingTop="2dp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="喜袋网"
+            android:textSize="17sp"
+            android:textColor="#242424"
+            />
+        <ImageView
+            android:id="@+id/iv_help"
+            android:paddingTop="2dp"
+            android:visibility="invisible"
+            android:paddingRight="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/help"/>
+    </LinearLayout>
+</LinearLayout>

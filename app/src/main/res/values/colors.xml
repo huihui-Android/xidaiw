@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="primary">#eb5c62</color>
+    <color name="footer_able">#666</color>
+    <color name="white">#fff</color>
+    <color name="black">#000</color>
+    <color name="black1">#313131</color>
+    <color name="black2">#535353</color>
+    <color name="black3">#707070</color>
+    <color name="gray">#ABABAB</color>
+    <color name="gray1">#A0A0A0</color>
+    <color name="gray2">#b5b5b5</color>
+    <color name="gray3">#898989</color>
+    <color name="gray4">#eeeeee</color>
+    <color name="graygray">#e1e1e1</color>
+    <color name="background">#f2f2f2</color>
+</resources>
