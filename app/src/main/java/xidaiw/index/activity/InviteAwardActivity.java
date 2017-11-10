@@ -15,6 +15,11 @@ import android.widget.Toast;
 import com.tencent.connect.common.Constants;
 import com.tencent.connect.share.QQShare;
 import com.tencent.connect.share.QzoneShare;
+import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
+import com.tencent.mm.opensdk.modelmsg.WXMediaMessage;
+import com.tencent.mm.opensdk.modelmsg.WXWebpageObject;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
@@ -24,6 +29,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import xidaiw.util.OnResponseListener;
+import xidaiw.util.WXShare;
 import xidaiw.widget.RewritePopwindow;
 
 public class InviteAwardActivity extends Activity implements View.OnClickListener{
@@ -42,6 +49,12 @@ public class InviteAwardActivity extends Activity implements View.OnClickListene
     private String shareImageUrl="http://101.37.174.8/ftp_user/app/thumb.png";
     private String shareURL="http://m.xidaiw.com/wap/recommend1";
     private ArrayList<String> shareImageList=new ArrayList<String>();
+    private WXShare wxShare;
+    private static final String APPID = "wxa1453efebee9360d";    //这个APP_ID就是注册APP的时候生成的
+
+    private static final String APP_SECRET = "12312312313212313213213";
+
+    public IWXAPI api;      //这个
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +68,25 @@ public class InviteAwardActivity extends Activity implements View.OnClickListene
             mTencent = Tencent.createInstance(mAppid, this.getApplicationContext());//QQ分享
         }
         shareImageList.add(shareImageUrl);//此处给QQ空间分享加数据
+        api = WXAPIFactory.createWXAPI(this, APPID, true);
+        api.registerApp(APPID);
+        wxShare = new WXShare(this);
+        wxShare.setListener(new OnResponseListener() {
+            @Override
+            public void onSuccess() {
+                // 分享成功
+            }
+
+            @Override
+            public void onCancel() {
+                // 分享取消
+            }
+
+            @Override
+            public void onFail(String message) {
+                // 分享失败
+            }
+        });
     }
     private void bindClickEvents() {
         btnInvite.setOnClickListener(this);
@@ -78,7 +110,9 @@ public class InviteAwardActivity extends Activity implements View.OnClickListene
             mPopwindow.backgroundAlpha(InviteAwardActivity.this, 1f);
             switch (v.getId()) {
                 case R.id.ll_wx_share:
-                    Toast.makeText(InviteAwardActivity.this, "微信好友", Toast.LENGTH_SHORT).show();
+                    wxShare();
+                    //wxShare.share("我是微信分享");
+                   //Toast.makeText(InviteAwardActivity.this, "微信好友", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.ll_wxFriends:
                     Toast.makeText(InviteAwardActivity.this, "朋友圈", Toast.LENGTH_SHORT).show();
@@ -97,7 +131,6 @@ public class InviteAwardActivity extends Activity implements View.OnClickListene
                     break;
             }
         }
-
     };
 
     private void qqShare() {
@@ -129,7 +162,6 @@ public class InviteAwardActivity extends Activity implements View.OnClickListene
             case R.id.tv_lookDetail:
                 Toast.makeText(InviteAwardActivity.this, "查看详情", Toast.LENGTH_SHORT).show();
                 break;
-
         }
     }
     @Override
@@ -157,5 +189,42 @@ public class InviteAwardActivity extends Activity implements View.OnClickListene
             Toast.makeText(InviteAwardActivity.this, "onCancel", Toast.LENGTH_SHORT).show();
         }
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        wxShare.register();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        wxShare.unregister();
+    }
+    public void wxShare() {
+        WXWebpageObject wxWebpageObject = new WXWebpageObject();
+        wxWebpageObject.webpageUrl=shareURL;
+        WXMediaMessage msg = new WXMediaMessage();  //这个对象是用来包裹发送信息的对象
+        msg.title = shareTitle;
+        msg.description=shareSummary;
+//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
+//        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+//        byte[] datas = baos.toByteArray();
+//        msg.thumbData = datas;
+        //在这设置缩略图
+        //官方文档介绍这个bitmap不能超过32kb
+        //如果一个像素是8bit的话换算成正方形的bitmap则边长不超过181像素,边长设置成150是比较保险的
+        //或者使用msg.setThumbImage(thumbBitmap);省去自己转换二进制数据的过程
+        //如果超过32kb则抛异常
+
+        SendMessageToWX.Req req = new SendMessageToWX.Req();    //创建一个请求对象
+        //req.transaction=buildTransction("webpage");
+        req.message = msg;  //把msg放入请求对象中
+        //req.scene = SendMessageToWX.Req.WXSceneTimeline;    //设置发送到朋友圈
+        req.scene = SendMessageToWX.Req.WXSceneSession;   //设置发送给朋友
+        api.sendReq(req);   //如果调用成功微信,会返回true
+    }
+
 }
 
