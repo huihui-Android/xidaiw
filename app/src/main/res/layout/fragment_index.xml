@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="#f2f2f2"
     android:orientation="vertical"
-    tools:context="xidaiw.index.fragment.FragmentIndex">
+    tools:context="btj.index.fragment.FragmentIndex">
 
     <include layout="@layout/header_index" />
     <ScrollView
@@ -28,12 +28,12 @@
                 <!--android:layout_width="match_parent"-->
                 <!--android:layout_height="match_parent">-->
                 <!--</android.support.v4.view.ViewPager>-->
-                <xidaiw.widget.AutoScrollViewPager
+                <btj.widget.AutoScrollViewPager
                     android:id="@+id/asvp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                </xidaiw.widget.AutoScrollViewPager>
+                </btj.widget.AutoScrollViewPager>
 
                 <LinearLayout
                     android:id="@+id/ll_dot"

@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/background"
-    tools:context="xidaiw.index.fragment.FragmentFind">
+    tools:context="btj.index.fragment.FragmentFind">
     <ScrollView
         android:scrollbars="none"
         android:layout_width="match_parent"

@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="xidaiw.index.fragment.FragmentLoans">
+    tools:context="btj.index.fragment.FragmentLoans">
 
     <!--     ptr:ptrAnimationStyle="flip"  flip:翻转  rotate:旋转-->
     <!--     ptr:ptrShowIndicator="true"  右上角 右下角出现箭头-->
