@@ -3,7 +3,7 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:background="#fff"
-    android:layout_height="48dp">
+    android:layout_height="45dp">
     <LinearLayout
         android:id="@+id/ll_index"
         android:layout_weight="1"
@@ -16,6 +16,7 @@
             android:id="@+id/iv_index"
             android:layout_width="25dp"
             android:layout_height="25dp"
+            android:contentDescription="@null"
             android:src="@drawable/footer_index"/>
         <TextView
             android:textColor="@color/black3"

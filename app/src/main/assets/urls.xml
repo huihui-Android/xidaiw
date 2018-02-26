@@ -17,29 +17,31 @@
 	<Item name="version" value="V1.0.0"/>
 	<!--轮播图地址-->
 	<Item name="Banner" value="/recommend?productChannelId=2"/>
-	<!--首页静态数据地址-->
-	<Item name="StatisticsData" value="/Mobile/queryStatisticsData.ashx" />
-	<!--通知地址-->
-	<Item name="Notice" value="/Mobile/queryNotice.ashx" />
-
-
 
 <!--licai页面-->
 	<!--理财列表-->
 	<Item name="productList" value="/product/list"/>
 	<!--产品详情-->
 	<Item name="product" value="/product"/>
-	<!--合同模板-->
+	<!--合同模板     需要相应的参数id才行-->
 	<Item name="productAgreementTemplate" value="/product/productAgreementTemplate"/>
-	<!--标的详情地址-->
-	<Item name="BidDetail" value="/Mobile/queryBidDetail.ashx" />
-	<!--查询项目地址-->
-	<Item name="queryProject" value="/Mobile/queryProject.ashx" />
+	<!--标的详情地址   需要传递参数-->
+	<Item name="productInfo" value="/product/productInfo" />
+	<!--项目详情地址xxxxxx待定-->
+	<Item name="productDetail" value="/product/productInfo" />
+	<!--立即抢购地址-->
+	<Item name="buyNow" value="/product/isCanBuy" />
 	<!--投标地址-->
 	<Item name="investBid" value="/Mobile/investBid.ashx" />
-	<!--查询转换详情地址-->
-	<Item name="queryTransferDetail" value="/Mobile/queryTransferDetail.ashx" />
+
 <!--find页面-->
+	<!--活动中心-->
+	<Item name="activityList" value="/activity/list"/>
+	<!--消息中心-->
+	<Item name="messageList" value="/message/list"/>
+	<!--帮助中心-->
+	<Item name="helpList" value="/help/list"/>
+
 
 <!--mine页面-->
 	<!--图片验证码地址-->
@@ -48,24 +50,30 @@
 	<Item name="login" value="/login"/>
 	<!--退出地址logout-->
 	<Item name="logout" value="/logout"/>
+	<!--注册,发送短信验证码地址  要传递参数-->
+	<Item name="registerCode" value="/mobileRegisteredNew"/>
 	<!--注册地址-->
 	<Item name="register" value="/registerForadAndroid" />
-	<!--检查手机,发送短信验证码地址-->
-	<Item name="checkMobile" value="/Mobile/sendMessage.ashx"/>
+	<!--重置登陆密码地址-->
+	<Item name="resetPassword" value="updatePassword"/>
+	<!--设置支付密码手机-->
+	<Item name="setPayPassword" value="/account/addPayPassword"/>
+	<!--重置支付密码手机,发送短信验证码地址-->
+	<Item name="resetPayPasswordCode" value="/account/resetPayPasswordCode"/>
+	<!--重置支付密码地址-->
+	<Item name="resetPayPassword" value="/account/resetPayPassword"/>
 	<!--实名认证地址-->
-	<Item name="certifyRealName" value="/Mobile/certifyRealName.ashx"/>
+	<Item name="certifyRealName" value="/account/identityVerification"/>
 	<!--充值地址-->
 	<Item name="recharge" value="/pay/rechargeRounte"/>
+	<!--查询充值记录地址-->
+	<Item name="rechargeRecord" value="/account/listRechargeRecord"/>
 	<!--提现地址-->
 	<Item name="withDraw" value="/account/withdrawApply"/>
-	<!--充值提现-->
-	<Item name="rechargeAdvance" value="/Mobile/doRechargeAdvance.ashx"/>
-	<!--发送短信地址-->
-	<Item name="sendMessage" value="/Mobile/sendMessage.ashx" />
-	<!--查询风险地址-->
-	<Item name="queryRisk" value="/Mobile/queryRisk.ashx" />
-	<!--查询支付计划地址-->
-	<Item name="queryRepaymentPlan" value="/Mobile/queryRepaymentPlan.ashx" />
+	<!--查询提现记录地址  要传递参数-->
+	<Item name="withDrawRecord" value="/account/listWithdrawalRecord"/>
+	<!--查询风险地址      http://m.xidaiw.com/wap/product/productDetail?showNav=0&productId='+api.pageParam.productId-->
+	<Item name="queryRisk" value="http://m.xidaiw.com/wap/product/productDetail" />
 	<!--查询标的记录地址-->
 	<Item name="queryBidRecord" value="/Mobile/queryBidRecord.ashx" />
 	<!--查询通知地址-->
@@ -89,12 +97,8 @@
 	<Item name="moreSecurity" value="/Mobile/Security.html" />
 	<!--更多联系我们地址-->
 	<Item name="moreContactUs" value="/Mobile/ContactUs.html" />
-	<!--查询提现地址-->
-	<Item name="queryWithdrawals" value="/Mobile/queryWithdrawals.ashx" />
-	<!--提现地址-->
-	<Item name="doWithdrawals" value="/Mobile/doWithdrawals.ashx" />
-	<!--转换标的地址-->
-	<Item name="transfersBid" value="/Mobile/TransfersBid.ashx" />
+	<!--查询交易明细地址-->
+	<Item name="jymx" value="/account/customerPointHistory" />
 	<!--查询投资详情地址-->
 	<Item name="queryInvestDetail" value="/Mobile/queryInvestDetail.ashx" />
 	<!--查询转让记录地址-->
@@ -111,34 +115,12 @@
 	<Item name="queryCapitalFlow" value="/Mobile/queryCapitalFlow.ashx" />
 	<!--查询资金流列表地址-->
 	<Item name="queryCapitalFlowList" value="/Mobile/queryCapitalFlowList.ashx" />
-	<!--修改密码地址-->
-	<Item name="ForgetPassword" value="/Mobile/ForgetPassword.ashx" />
-	<!--修改登录密码地址-->
-	<Item name="modifyLoginPwd" value="/Mobile/modifyLoginPwd.ashx" />
-	<!--修改手机号地址-->
-	<Item name="doModifyPhone" value="/Mobile/doModifyPhone.ashx" />
-	<!--解绑银行卡地址-->
-	<Item name="unbindingbankcard" value="/Mobile/unbindingbankcard.ashx" />
-	<!--忘记支付密码地址-->
-	<Item name="doforgetPayPassword" value="/mobile/doforgetPayPassword.ashx" />
-	<!--查询我的借款地址-->
-	<Item name="queryMyLoan" value="/mobile/queryMyLoan.ashx" />
-	<!--查询我的借款列表地址-->
-	<Item name="queryMyLoanList" value="/mobile/queryMyLoanList.ashx" />
-	<!--查询我的过期的列表地址-->
-	<Item name="queryOverdueList" value="/mobile/queryOverdueList.ashx" />
 	<!--查询通知标题地址-->
 	<Item name="queryNoticeTitle" value="/mobile/queryNoticeTitle.ashx" />
-	<!--查询我的转让记录地址-->
-	<Item name="querytransRecord" value="/mobile/querytransRecord.ashx" />
 	<!--查询用户信息地址-->
-	<Item name="queryUserInfo" value="/Mobile/queryUserInfo.ashx"/>
+	<Item name="queryUserInfo" value="/account/indexNew"/>
 	<!--绑卡地址-->
 	<Item name="doBindingbankCard" value="/bankCard/addWithoutPrcptcd"/>
-
-	<Item name="doBindingBankCardAdvance" value="http://192.168.1.114:8080/zlsy_web"/>
-	<!--用户银行卡地址-->
-	<Item name="bankCard" value="/userBankCard" />
-	<!--查询充值地址-->
-	<Item name="queryRecharge" value="/Mobile/queryRecharge.ashx" />
+	<!--查询用户银行卡地址-->
+	<Item name="bankCard" value="/userBankCard/listByChannelId?productChannelId=2" />
 </Urls>

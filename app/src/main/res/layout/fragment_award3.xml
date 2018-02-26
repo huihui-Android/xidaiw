@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
+
     <ScrollView
         android:scrollbars="none"
         android:layout_width="match_parent"
@@ -23,13 +24,13 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:src="@mipmap/invite_award1"/>
-                <ImageView
-                    android:layout_marginLeft="21dp"
-                    android:layout_centerVertical="true"
-                    android:id="@+id/iv_right"
-                    android:src="@mipmap/invite_to_left"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                <!--<ImageView-->
+                    <!--android:layout_marginLeft="21dp"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:id="@+id/iv_to_left"-->
+                    <!--android:src="@mipmap/invite_to_left"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content" />-->
             </RelativeLayout>
             <TextView
                 android:layout_marginTop="30dp"
@@ -40,9 +41,8 @@
                 android:layout_height="wrap_content"
                 android:text="活动规则"/>
             <TextView
-
                 android:layout_marginTop="30dp"
-                android:lineSpacingExtra="6dp"
+                android:lineSpacingExtra="8dp"
                 android:textSize="14sp"
                 android:textColor="#535353"
                 android:layout_marginLeft="25dp"
@@ -51,20 +51,16 @@
                 android:layout_height="wrap_content"
                 android:text="1.登录您的喜袋网账户,分享您的邀请链接给新用户,新用户使用您的邀请链接注册并投资,您将获得相应的佣金奖励!"/>
             <TextView
-
-                android:layout_marginTop="6dp"
-                android:lineSpacingExtra="6dp"
+                android:lineSpacingExtra="8dp"
                 android:textSize="14sp"
                 android:textColor="#535353"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="2.好友年化投资额(不含体验金):\n    好友投的是'天标',则=所推荐好友投资金额/360*所投天数.例如,所邀请好友投资60天标10万,则年化投资额为10万/360*60=16666元;"/>
+                android:text="2.好友年化投资额(不含体验金):\n    好友投的是\''天标\'',则=所推荐好友投资金额/360*所投天数.例如,所邀请好友投资60天标10万,则年化投资额为10万/360*60=16666元;"/>
             <TextView
-
-                android:layout_marginTop="6dp"
-                android:lineSpacingExtra="6dp"
+                android:lineSpacingExtra="8dp"
                 android:textSize="14sp"
                 android:textColor="#535353"
                 android:layout_marginLeft="25dp"
@@ -73,7 +69,6 @@
                 android:layout_height="wrap_content"
                 android:text="3.奖励发放:\n    好友投资成功满标计息后即发放到邀请人账户,您可在邀请记录中查看,所发佣金,皆为现金奖励,可用于投资或提现;"/>
             <TextView
-                android:layout_marginTop="6dp"
                 android:lineSpacingExtra="6dp"
                 android:textSize="14sp"
                 android:textColor="#535353"
@@ -92,7 +87,7 @@
                 android:text="举个例子:"/>
             <TextView
                 android:layout_marginTop="15dp"
-                android:lineSpacingExtra="5dp"
+                android:lineSpacingExtra="6dp"
                 android:textSize="12sp"
                 android:textColor="#707070"
                 android:layout_marginLeft="25dp"
@@ -106,18 +101,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:lineSpacingExtra="5dp"
+                    android:lineSpacingExtra="6dp"
                     android:textSize="12sp"
                     android:textColor="#707070"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="10000*0.6%/360*180*50="/>
                 <TextView
+                    android:lineSpacingExtra="6dp"
                     android:textSize="12sp"
                     android:textColor="#ff350d"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1500"/>
+                    android:text="1500元"/>
             </LinearLayout>
             <TextView
                 android:layout_marginLeft="25dp"
@@ -133,7 +129,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:lineSpacingExtra="5dp"
+                    android:lineSpacingExtra="6dp"
                     android:textSize="12sp"
                     android:textColor="#707070"
                     android:layout_width="wrap_content"
@@ -144,7 +140,7 @@
                     android:textColor="#ff350d"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="15000"/>
+                    android:text="15000元"/>
             </LinearLayout>
             <TextView
                 android:layout_marginLeft="25dp"
@@ -160,7 +156,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:lineSpacingExtra="5dp"
+                    android:lineSpacingExtra="6dp"
                     android:textSize="12sp"
                     android:textColor="#707070"
                     android:layout_width="wrap_content"
@@ -171,7 +167,7 @@
                     android:textColor="#ff350d"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="300000"/>
+                    android:text="300000元"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_marginTop="5dp"
@@ -179,7 +175,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:lineSpacingExtra="5dp"
+                    android:lineSpacingExtra="6dp"
                     android:textSize="12sp"
                     android:textColor="#707070"
                     android:layout_width="wrap_content"

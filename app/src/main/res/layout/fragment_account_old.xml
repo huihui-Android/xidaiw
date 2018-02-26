@@ -1,4 +1,4 @@
-<btj.util.SlidingMenu
+<xidaiw.util.SlidingMenu
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:hh="http://schemas.android.com/apk/res-auto"
     android:scrollbars="none"
@@ -351,4 +351,4 @@
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
-</btj.util.SlidingMenu>
+</xidaiw.util.SlidingMenu>

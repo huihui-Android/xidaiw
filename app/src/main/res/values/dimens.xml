@@ -7,5 +7,6 @@
     <dimen name="title">18sp</dimen>
     <dimen name="head">20sp</dimen>
     <dimen name="ps">12sp</dimen>
+    <dimen name="small">11sp</dimen>
     <dimen name="slideMenu">100dp</dimen>
 </resources>

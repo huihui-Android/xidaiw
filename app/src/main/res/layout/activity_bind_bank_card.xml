@@ -5,45 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-    <RelativeLayout
-        android:background="@color/white"
-        android:layout_width="match_parent"
-        android:layout_height="60dp">
-        <ImageView
-            android:layout_marginLeft="15dp"
-            android:layout_marginBottom="9dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentBottom="true"
-            android:id="@+id/iv_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/back_left"/>
-        <TextView
-            android:textSize="18sp"
-            android:textColor="@color/black1"
-            android:layout_marginBottom="4dp"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="添加银行卡"/>
-        <ImageView
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="9dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:id="@+id/iv_help"
-            android:src="@mipmap/help"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </RelativeLayout>
-    <RelativeLayout
-        android:background="@color/graygray"
-        android:layout_width="match_parent"
-        android:layout_height="10dp">
-    </RelativeLayout>
+    <include layout="@layout/header"/>
     <LinearLayout
+        android:layout_marginTop="10dp"
         android:background="@color/white"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -172,7 +136,6 @@
         </RelativeLayout>
     </LinearLayout>
     <RelativeLayout
-        android:background="@color/graygray"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <Button

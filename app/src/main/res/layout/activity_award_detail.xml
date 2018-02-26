@@ -1,18 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:id="@+id/activity_award_detail"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="btj.index.activity.AwardDetailActivity">
+    android:layout_height="match_parent">
     <include layout="@layout/header"/>
     <View
+        android:id="@+id/line"
+        android:layout_below="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="0.1dp"
         android:background="@color/gray4"/>
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vp_award_detail"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_award_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </android.support.v4.view.ViewPager>
+        <ImageView
+            android:id="@+id/invite_to_left"
+            android:layout_marginTop="66dp"
+            android:layout_marginLeft="21dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/invite_to_left"/>
+        <ImageView
+            android:id="@+id/invite_to_right"
+            android:layout_marginTop="66dp"
+            android:layout_marginRight="21dp"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/invite_to_right"/>
+    </RelativeLayout>
+
 </LinearLayout>

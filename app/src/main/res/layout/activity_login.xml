@@ -5,40 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <!--<LinearLayout-->
-        <!--android:background="@color/gray"-->
-        <!--android:orientation="horizontal"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="60dp">-->
-        <!--<LinearLayout-->
-            <!--android:layout_marginTop="33dp"-->
-            <!--android:orientation="horizontal"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content">-->
-            <!--<ImageView-->
-                <!--android:layout_marginTop="0dp"-->
-                <!--android:layout_marginLeft="15dp"-->
-                <!--android:layout_width="20dp"-->
-                <!--android:layout_height="20dp"-->
-                <!--android:src="@mipmap/back"/>-->
-            <!--<TextView-->
-                <!--android:textAlignment="center"-->
-                <!--android:textSize="17sp"-->
-                <!--android:layout_weight="1"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="登录"/>-->
-            <!--<ImageView-->
-                <!--android:visibility="invisible"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:src="@mipmap/help"/>-->
-        <!--</LinearLayout>-->
-    <!--</LinearLayout>-->
     <include layout="@layout/header"/>
+    <RelativeLayout
+        android:id="@+id/rl_smsLogin"
+        android:visibility="invisible"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_smsLogin"
+            android:drawableLeft="@mipmap/sms"
+            android:drawablePadding="6dp"
+            android:layout_alignParentRight="true"
+            android:textSize="13sp"
+            android:textColor="@color/primary"
+            android:paddingRight="35dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="短信快捷登录"/>
+    </RelativeLayout>
     <LinearLayout
-        android:layout_marginTop="53dp"
+        android:layout_marginTop="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -46,19 +33,26 @@
             android:inputType="phone"
             android:maxLength="13"
             android:id="@+id/et_phone"
-            android:drawableLeft="@mipmap/phone2"
+            android:drawableLeft="@mipmap/mobile"
             android:drawablePadding="18dp"
             android:paddingLeft="55dp"
             android:background="@null"
             android:textCursorDrawable="@drawable/edittext_cursor"
-            android:layout_width="match_parent"
+            android:layout_width="260dp"
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:textColorHint="#c2c2c9"
             android:hint="手机号"/>
+        <ImageView
+            android:visibility="invisible"
+            android:padding="5dp"
+            android:id="@+id/iv_clearphone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/delete1"/>
     </LinearLayout>
     <View
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="38dp"
         android:layout_marginRight="38dp"
         android:layout_width="match_parent"
@@ -75,25 +69,33 @@
             android:maxLength="20"
             android:id="@+id/et_password"
             android:textCursorDrawable="@drawable/edittext_cursor"
-            android:drawableLeft="@mipmap/lock2"
+            android:drawableLeft="@mipmap/password"
             android:paddingLeft="55dp"
             android:drawablePadding="18dp"
             android:background="@null"
-            android:layout_width="match_parent"
+            android:layout_width="260dp"
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:textColorHint="#c2c2c9"
             android:hint="登录密码"/>
         <ImageView
-            android:paddingTop="5dp"
-            android:id="@+id/iv_eye"
-            android:layout_marginLeft="-80dp"
+            android:visibility="invisible"
+            android:padding="5dp"
+            android:id="@+id/iv_clearpwd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/eye_close"/>
+            android:src="@mipmap/delete1"/>
+        <ImageView
+            android:id="@+id/iv_eye"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:src="@mipmap/eye_close1"/>
     </LinearLayout>
     <View
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="38dp"
         android:layout_marginRight="38dp"
         android:layout_width="match_parent"
@@ -103,7 +105,7 @@
         android:id="@+id/btn_login"
         android:layout_marginLeft="38dp"
         android:layout_marginRight="38dp"
-        android:layout_marginTop="47dp"
+        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:textSize="17sp"
@@ -116,21 +118,28 @@
         android:layout_height="wrap_content"
         >
         <TextView
-            android:id="@+id/tv_register"
+            android:id="@+id/tv_newfriend"
             android:paddingLeft="40dp"
-            android:textSize="13sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="新朋友"/>
+        <TextView
+            android:layout_toRightOf="@+id/tv_newfriend"
+            android:id="@+id/tv_register"
+            android:textSize="14sp"
             android:textColor="@color/primary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="我是新用户"/>
+            android:text="免费注册 >"/>
         <TextView
             android:id="@+id/tv_forgotPassword"
-            android:textColor="@color/primary"
+            android:textColor="@color/black3"
             android:paddingRight="40dp"
-            android:textSize="13sp"
+            android:textSize="14sp"
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="忘记密码"/>
+            android:text="忘记密码?"/>
     </RelativeLayout>
 </LinearLayout>

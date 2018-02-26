@@ -32,42 +32,36 @@
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
-        android:name="btj.MyApplication"
+        android:name="xidaiw.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/icon150x150"
         android:label="喜袋网_原生"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="btj.index.activity.MainActivity">
+        <activity android:name="xidaiw.index.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="btj.mine.activity.LoginActivity" />
-        <activity android:name="btj.mine.activity.SafeCenterActivity" />
-        <activity android:name="btj.mine.activity.CertificationActivity" />
-        <activity android:name="btj.mine.activity.CertificateAfterActivity" />
-        <!--
- ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
-        -->
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
-
-        <activity android:name="btj.mine.activity.BindBankCardActivity" />
-        <activity android:name="btj.mine.activity.ForgetPasswordActivity" />
-        <activity android:name="btj.mine.activity.EditPasswordActivity" />
-        <activity android:name="btj.mine.activity.ResetPasswordActivity" />
-        <activity android:name="btj.mine.activity.EditPayPasswordActivity" />
-        <activity android:name="btj.mine.activity.ResetPayPasswordActivity" />
-        <activity android:name="btj.mine.activity.ForgetPayPasswordActivity" />
-        <activity android:name="btj.index.activity.BannerViewActivity" />
-        <activity android:name="btj.index.activity.InviteAwardActivity" />
+        <activity android:name="xidaiw.mine.activity.LoginActivity" />
+        <activity android:name="xidaiw.mine.activity.SafeCenterActivity" />
+        <activity android:name="xidaiw.mine.activity.CertificationActivity" />
+        <activity android:name="xidaiw.mine.activity.CertificateAfterActivity" />
+        <activity android:name="xidaiw.mine.activity.BindBankCardActivity" />
+        <activity android:name="xidaiw.mine.activity.ForgetPasswordActivity" />
+        <activity android:name="xidaiw.mine.activity.EditPasswordActivity" />
+        <activity android:name="xidaiw.mine.activity.ResetPasswordActivity" />
+        <activity android:name="xidaiw.mine.activity.EditPayPasswordActivity" />
+        <activity android:name="xidaiw.mine.activity.ResetPayPasswordActivity" />
+        <activity android:name="xidaiw.mine.activity.ForgetPayPasswordActivity" />
+        <activity android:name="xidaiw.index.activity.BannerViewActivity" />
+        <activity android:name="xidaiw.index.activity.InviteAwardActivity" />
         <!-- 这是QQ分享添加的两个AuthActivity和AssistActivity -->
         <activity
             android:name="com.tencent.tauth.AuthActivity"
@@ -89,14 +83,16 @@
 
         <!-- 微信分享 -->
         <activity
-            android:name="btj.wxapi.WXEntryActivity"
+            android:name="xidaiw.wxapi.WXEntryActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Fullscreen.Translucent" />
-        <activity android:name="btj.index.activity.NewhandGuideActivity" />
-        <activity android:name="btj.index.activity.MessageCenter" />
-        <activity android:name="btj.index.activity.SiginActivity" />
-        <activity android:name="btj.index.activity.AwardDetailActivity"></activity>
+        <activity android:name="xidaiw.index.activity.NewhandGuideActivity" />
+        <activity android:name="xidaiw.index.activity.MessageCenter" />
+        <activity android:name="xidaiw.index.activity.SiginActivity" />
+        <activity android:name="xidaiw.index.activity.AwardDetailActivity" />
+        <activity android:name="xidaiw.mine.activity.RegistActivity" />
+        <activity android:name="xidaiw.mine.activity.LoginBySmsActivity"></activity>
     </application>
 
 </manifest>

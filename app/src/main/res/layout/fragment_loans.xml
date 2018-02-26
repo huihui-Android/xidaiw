@@ -1,12 +1,37 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="btj.index.fragment.FragmentLoans">
-
-    <!--     ptr:ptrAnimationStyle="flip"  flip:翻转  rotate:旋转-->
-    <!--     ptr:ptrShowIndicator="true"  右上角 右下角出现箭头-->
-    <!-- TODO: Update blank fragment layout -->
+    android:orientation="vertical"
+    android:background="@color/background"
+    tools:context="xidaiw.index.fragment.FragmentLoans">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="30dp">
+        <TextView
+            android:paddingTop="2dp"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="理财"/>
+        <ImageView
+            android:src="@mipmap/help"
+            android:layout_alignParentRight="true"
+            android:paddingRight="15dp"
+            android:paddingTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_alignParentBottom="true"
+            android:background="#eeeeee"/>
+    </RelativeLayout>
+         <!--ptr:ptrAnimationStyle="flip"  flip:翻转  rotate:旋转-->
+         <!--ptr:ptrShowIndicator="true"  右上角 右下角出现箭头-->
+     <!--TODO: Update blank fragment layout-->
     <com.handmark.pulltorefresh.library.PullToRefreshListView
         xmlns:ptr="http://schemas.android.com/apk/res-auto"
         android:id="@+id/list_view"
@@ -20,4 +45,4 @@
         ptr:ptrHeaderTextColor="@color/gray"
         >
     </com.handmark.pulltorefresh.library.PullToRefreshListView>
-</FrameLayout>
+</LinearLayout>

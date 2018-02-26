@@ -15,6 +15,8 @@
     <color name="gray2">#b5b5b5</color>
     <color name="gray3">#898989</color>
     <color name="gray4">#eeeeee</color>
+    <color name="gray5">#e5e5e5</color>
     <color name="graygray">#e1e1e1</color>
     <color name="background">#f2f2f2</color>
+    <color name="blue1">#62C6C2</color>
 </resources>

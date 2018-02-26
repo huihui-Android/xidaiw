@@ -3,16 +3,6 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <!--<LinearLayout-->
-            <!--android:layout_weight="1"-->
-            <!--android:id="@+id/activity_main"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="0dp"-->
-            <!--android:background="#fff"-->
-            <!--android:orientation="vertical"-->
-            <!--&gt;-->
-            <!---->
-        <!--</LinearLayout>-->
         <FrameLayout
             android:layout_weight="9"
             android:id="@+id/container"
@@ -26,16 +16,8 @@
             android:background="#f2f2f2"
             />
         <include
-            android:layout_weight="0.9"
+            android:layout_weight="0.83"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             layout="@layout/footer"/>
-        <!--<LinearLayout-->
-            <!--android:orientation="vertical"-->
-            <!--android:layout_weight="0.1"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="0dp">-->
-
-        <!--</LinearLayout>-->
-
     </LinearLayout>
