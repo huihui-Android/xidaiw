@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Channel>
+    <!--<channel name="channelID" value="1"/>   &lt;!&ndash; 小米市场 &ndash;&gt;-->
+    <!--<channel name="channelID" value="2"/>   &lt;!&ndash; 360市场 &ndash;&gt;-->
+    <!--<channel name="channelID" value="6"/>   &lt;!&ndash;华为市场  &ndash;&gt;-->
+    <!--<channel name="channelID" value="11"/>   &lt;!&ndash; 安智网 &ndash;&gt;-->
+    <!--<channel name="channelID" value="13"/>   &lt;!&ndash; 搜狗市场 &ndash;&gt;-->
+    <!--<channel name="channelID" value="16"/>   &lt;!&ndash; 魅族市场 &ndash;&gt;-->
+    <!--<channel name="channelID" value="19"/>   &lt;!&ndash; 酷传市场 &ndash;&gt;-->
+    <!--<channel name="channelID" value="20"/>   &lt;!&ndash; 锤子市场 &ndash;&gt;-->
+    <!--<channel name="channelID" value="35"/>   &lt;!&ndash; vivo &ndash;&gt;-->
+    <channel name="channelID" value="8888"/>   <!-- 官方网站 -->
+</Channel>
