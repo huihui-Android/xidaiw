@@ -6,13 +6,11 @@
 	<!--线上地址-->
 	<Item name="host" value="http://mobile.xidaiw.com/mobile"/>
 	<!--测试地址-->
-	<Item name="localhost" value="http://10.0.0.22:11012/mobile"/>
+	<!--<Item name="host" value="http://10.0.0.22:11012/mobile"/>-->
 	<!--极光推送地址-->
 	<Item name="jphost" value="http://push.cn/Index/send"/>
 
 <!--index页面-->
-	<!--检查版本更新-->
-	<Item name="queryAppVersion" value="/version/check.do" />
 	<!--查询版本信息地址-->
 	<Item name="version" value="V1.0.0"/>
 	<!--轮播图地址-->
@@ -32,7 +30,6 @@
 	<!--立即抢购地址-->
 	<Item name="buyNow" value="/product/isCanBuy" />
 	<!--投标地址-->
-	<Item name="investBid" value="/Mobile/investBid.ashx" />
 
 <!--find页面-->
 	<!--活动中心-->
@@ -74,49 +71,9 @@
 	<Item name="withDrawRecord" value="/account/listWithdrawalRecord"/>
 	<!--查询风险地址      http://m.xidaiw.com/wap/product/productDetail?showNav=0&productId='+api.pageParam.productId-->
 	<Item name="queryRisk" value="http://m.xidaiw.com/wap/product/productDetail" />
-	<!--查询标的记录地址-->
-	<Item name="queryBidRecord" value="/Mobile/queryBidRecord.ashx" />
-	<!--查询通知地址-->
-	<Item name="queryNotice" value="/Mobile/queryNotice.ashx" />
-	<!--查询通知详情地址-->
-	<Item name="queryNoticeDetail" value="/Mobile/queryNoticeDetail.ashx" />
-	<!--更多常见问题地址-->
-	<Item name="moreCommonProblem" value="/Mobile/CommonProblem.html" />
-	<!--更多注册地址-->
-	<Item name="moreregister" value="/Mobile/register.html" />
-	<!--更多充值地址-->
-	<Item name="morerecharge" value="/Mobile/recharge.html" />
-	<!--更多提现地址-->
-	<Item name="moreWithdrawals" value="/Mobile/Withdrawals.html" />
-	<!--更多投资地址-->
-	<Item name="moreInvest" value="/Mobile/Invest.html" />
-	<!--更多转换地址-->
-	<Item name="moreTransfer" value="/Mobile/Transfer.html" />
-	<!--更多关于我们地址-->
-	<Item name="moreAboutUs" value="/Mobile/AboutUs.html" />
-	<Item name="moreSecurity" value="/Mobile/Security.html" />
-	<!--更多联系我们地址-->
-	<Item name="moreContactUs" value="/Mobile/ContactUs.html" />
 	<!--查询交易明细地址-->
 	<Item name="jymx" value="/account/customerPointHistory" />
 	<!--查询投资详情地址-->
-	<Item name="queryInvestDetail" value="/Mobile/queryInvestDetail.ashx" />
-	<!--查询转让记录地址-->
-	<Item name="queryTransferRecord" value="/Mobile/queryTransferRecord.ashx" />
-	<!--查询伙伴地址-->
-	<Item name="queryPartner" value="/Mobile/queryPartner.ashx" />
-	<!--查询个人中心地址-->
-	<Item name="queryPersonalCenter" value="/Mobile/queryPersonalCenter.ashx" />
-	<!--查询转让记录列表地址-->
-	<Item name="queryTransferRecordList" value="/Mobile/queryTransferRecordList.ashx" />
-	<!--主页头像上传地址-->
-	<Item name="homePhotoUpload" value="/Mobile/homePhotoUpload.ashx" />
-	<!--查询资金流地址-->
-	<Item name="queryCapitalFlow" value="/Mobile/queryCapitalFlow.ashx" />
-	<!--查询资金流列表地址-->
-	<Item name="queryCapitalFlowList" value="/Mobile/queryCapitalFlowList.ashx" />
-	<!--查询通知标题地址-->
-	<Item name="queryNoticeTitle" value="/mobile/queryNoticeTitle.ashx" />
 	<!--查询用户信息地址-->
 	<Item name="queryUserInfo" value="/account/indexNew"/>
 	<!--绑卡地址-->

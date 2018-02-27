@@ -9,5 +9,5 @@
     <!--<channel name="channelID" value="19"/>   &lt;!&ndash; 酷传市场 &ndash;&gt;-->
     <!--<channel name="channelID" value="20"/>   &lt;!&ndash; 锤子市场 &ndash;&gt;-->
     <!--<channel name="channelID" value="35"/>   &lt;!&ndash; vivo &ndash;&gt;-->
-    <channel name="channelID" value="8888"/>   <!-- 官方网站 -->
+    <channel name="channelID">8888</channel>>   <!-- 官方网站 -->
 </Channel>
