@@ -34,7 +34,7 @@
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-
+    <!-- 必须的权限 -->
     <application
         android:name="xidaiw.MyApplication"
         android:allowBackup="true"
@@ -92,7 +92,8 @@
         <activity android:name="xidaiw.index.activity.SiginActivity" />
         <activity android:name="xidaiw.index.activity.AwardDetailActivity" />
         <activity android:name="xidaiw.mine.activity.RegistActivity" />
-        <activity android:name="xidaiw.mine.activity.LoginBySmsActivity"></activity>
+        <activity android:name="xidaiw.mine.activity.LoginBySmsActivity" />
+        <activity android:name="xidaiw.index.activity.CommonProblemsActivity"></activity>
     </application>
 
 </manifest>

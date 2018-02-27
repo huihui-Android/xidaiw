@@ -15,3 +15,11 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+-keep class com.umeng.error.UMError{ public ; }
+
+-keep class com.umeng.error.UMErrorCatch{ public ; }
+
+-keep class com.umeng.error.UMErrorDataManger{ public ; }
+
+-keep class com.umeng.error.BatteryUtils{ public ; }
+-keep class com.umeng.commonsdk.** {*;}
