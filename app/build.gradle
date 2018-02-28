@@ -44,3 +44,6 @@ dependencies {
     compile 'com.umeng.sdk:common:latest.integration'
     compile 'com.umeng.sdk:analytics:latest.integration'
 }
+dependencies {
+    compile 'com.android.support:support-v4:26.+'
+}
