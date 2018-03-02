@@ -43,7 +43,8 @@
         android:label="喜袋网_原生"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="xidaiw.index.activity.MainActivity"
+        <activity
+            android:name="xidaiw.index.activity.MainActivity"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -96,7 +97,9 @@
         <activity android:name="xidaiw.mine.activity.RegistActivity" />
         <activity android:name="xidaiw.mine.activity.LoginBySmsActivity" />
         <activity android:name="xidaiw.index.activity.CommonProblemsActivity" />
-        <activity android:name="xidaiw.mine.activity.UserProtocolActivity"></activity>
+        <activity android:name="xidaiw.mine.activity.UserProtocolActivity" />
+        <activity android:name="xidaiw.mine.activity.RechargeActivity" />
+        <activity android:name="xidaiw.mine.activity.WithdrawActivity" />
     </application>
 
 </manifest>
