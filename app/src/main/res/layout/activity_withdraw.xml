@@ -113,7 +113,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="12sp"
                     android:textColor="@color/primary"
-                    android:text="￥2.00"/>
+                    android:text="￥0.00"/>
                 <TextView
                     android:id="@+id/tv_sxf_desc"
                     android:layout_alignParentRight="true"
@@ -164,7 +164,7 @@
     <LinearLayout
         android:id="@+id/ll_dialog"
         android:clickable="true"
-
+        android:visibility="gone"
         android:background="#55000000"
         android:orientation="vertical"
         android:layout_width="match_parent"

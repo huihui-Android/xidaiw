@@ -1,5 +1,6 @@
 package xidaiw.mine.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -13,11 +14,13 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 import com.xidaiw.btj.R;
 
 import java.util.List;
 
 import xidaiw.mine.entity.BankInfo;
+import xidaiw.mine.entity.RechargeRemoteInfo;
 import xidaiw.util.GlobalUtils;
 import xidaiw.util.HttpClient;
 import xidaiw.util.Urls;
@@ -37,6 +40,8 @@ public class RechargeActivity extends AppCompatActivity {
     private ImageView ivClear,ivBack;
     private TextView tvBankLimitTable;
     private static final String TAG = "RechargeActivity";
+    private int bankId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +51,6 @@ public class RechargeActivity extends AppCompatActivity {
         bindEvents();
         initData();
     }
-
     private void initData() {
         HttpClient.get(this, Urls.getHost()+"/userBankCard/listByChannelId?productChannelId=2",new RechargeResponseHandler());
     }
@@ -79,7 +83,8 @@ public class RechargeActivity extends AppCompatActivity {
         public void onClick(View v) {
             switch(v.getId()){
                 case R.id.tv_right:
-                    Toast.makeText(RechargeActivity.this, "充值记录", Toast.LENGTH_SHORT).show();
+                    Intent rechargeRecord=new Intent(RechargeActivity.this,RechargeRecordActivity.class);
+                    startActivity(rechargeRecord);
                     break;
                 case R.id.iv_clear:
                     etRechargeMoney.setText("");
@@ -95,7 +100,11 @@ public class RechargeActivity extends AppCompatActivity {
                         Toast.makeText(RechargeActivity.this, "充值须不低于50元", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    Toast.makeText(RechargeActivity.this, "确定", Toast.LENGTH_SHORT).show();
+                    RequestParams params=new RequestParams();
+                    params.put("amount",rechargMoneyNum+"");
+                    params.put("userBankCardId",bankId+"");
+                    params.put("productChannelId","2");
+                    HttpClient.post(RechargeActivity.this,Urls.getHost()+"/pay/rechargeRounte",params,new RechargeRemoteResponseHandler());
                     break;
                 case R.id.iv_back:
                     finish();
@@ -116,11 +125,31 @@ public class RechargeActivity extends AppCompatActivity {
             if (bankInfo.isSuccess()){
                 BankInfo.DataBean data = bankInfo.getData();
                 List<BankInfo.DataBean.ListBean> list = data.getList();
+                bankId = list.get(0).getBankId();
                 ivBankLogo.setImageURL(list.get(0).getBankPicPath());
                 tvBankName.setText(list.get(0).getBankName());
                 tvBankNum.setText("尾号"+list.get(0).getBankCardNumber());
                 tvTimeLimit.setText(GlobalUtils.NumberFormatTransfer(list.get(0).getBankTimeLimit()+".00"));
                 tvDailyLimit.setText(GlobalUtils.NumberFormatTransfer(list.get(0).getBankDayLimit()+".00"));
+
+            }
+        }
+    }
+
+    private class RechargeRemoteResponseHandler extends AsyncHttpResponseHandler {
+        @Override
+        public void onSuccess(int i, String s) {
+            Log.i(TAG, "RechargeRemoteResponseHandler: "+s);
+            RechargeRemoteInfo rechargeRemoteInfo = JSON.parseObject(s, RechargeRemoteInfo.class);
+            if (rechargeRemoteInfo.isSuccess()){
+                RechargeRemoteInfo.DataBean rechargeRemoteInfoData = rechargeRemoteInfo.getData();
+                String payWay = rechargeRemoteInfoData.getPayWay();
+                String relativeUrl = rechargeRemoteInfoData.getRelativeUrl();
+                String url = rechargeRemoteInfoData.getUrl();
+                Intent intent=new Intent(RechargeActivity.this,RechargeRemoteActivity.class);
+                intent.putExtra("url",url);
+                intent.putExtra("relativeUrl",relativeUrl);
+                startActivity(intent);
             }
         }
     }
