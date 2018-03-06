@@ -65,15 +65,16 @@
         <activity android:name="xidaiw.mine.activity.ForgetPayPasswordActivity" />
         <activity android:name="xidaiw.index.activity.BannerViewActivity" />
         <activity android:name="xidaiw.index.activity.InviteAwardActivity" />
-        <!-- 这是QQ分享添加的两个AuthActivity和AssistActivity -->
         <activity
             android:name="com.tencent.tauth.AuthActivity"
             android:launchMode="singleTask"
             android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="tencent1106268541" />
             </intent-filter>
         </activity>
@@ -81,7 +82,6 @@
             android:name="com.tencent.connect.common.AssistActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <!-- 微信分享 -->
         <activity
             android:name="xidaiw.wxapi.WXEntryActivity"
             android:exported="true"
@@ -97,8 +97,11 @@
         <activity android:name="xidaiw.mine.activity.UserProtocolActivity" />
         <activity android:name="xidaiw.mine.activity.RechargeActivity" />
         <activity android:name="xidaiw.mine.activity.WithdrawActivity" />
-        <activity android:name="xidaiw.mine.activity.RechargeRemoteActivity"/>
-        <activity android:name="xidaiw.mine.activity.RechargeRecordActivity"/>
+        <activity android:name="xidaiw.mine.activity.RechargeRemoteActivity" />
+        <activity android:name="xidaiw.mine.activity.RechargeRecordActivity" />
+        <activity android:name="xidaiw.mine.activity.WithdrawRecordActivity" />
+        <activity android:name="xidaiw.mine.activity.MyAwardActivity" />
+        <activity android:name="xidaiw.mine.activity.RedPacketActivity"></activity>
     </application>
 
 </manifest>

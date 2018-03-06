@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="35dp"
+    android:gravity="center_vertical"
+    android:background="@color/white">
+    <ImageView
+        android:id="@+id/iv_back"
+        android:paddingLeft="15dp"
+        android:paddingRight="20dp"
+        android:paddingTop="6dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/back_left"/>
+    <LinearLayout
+        android:padding="1dp"
+        android:background="@drawable/header_button_shape"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_width="234dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_usable"
+            android:padding="4dp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textSize="15sp"
+            android:background="@drawable/header_button_text_red_bg1"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="可使用"/>
+        <TextView
+            android:id="@+id/tv_used"
+            android:padding="4dp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textSize="15sp"
+            android:textColor="@color/primary"
+            android:background="@drawable/header_button_text_white_bg2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="已失效"/>
+    </LinearLayout>
+
+</RelativeLayout>

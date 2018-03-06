@@ -115,7 +115,8 @@ public class WithdrawActivity extends AppCompatActivity {
                     finish();
                     break;
                 case R.id.tv_right:
-                    Toast.makeText(WithdrawActivity.this, "提现记录", Toast.LENGTH_SHORT).show();
+                    Intent withdrawRecord=new Intent(WithdrawActivity.this,WithdrawRecordActivity.class);
+                    startActivity(withdrawRecord);
                     break;
                 case R.id.tv_sxf_desc:
                     llDialog.setVisibility(View.VISIBLE);

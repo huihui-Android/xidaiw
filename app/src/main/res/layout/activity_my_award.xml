@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_my_award"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <include layout="@layout/header"/>
+    <RelativeLayout
+        android:layout_marginTop="5dp"
+        android:id="@+id/rl_red_packet"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:layout_height="50dp">
+        <TextView
+            android:text="我的红包"
+            android:paddingLeft="15dp"
+            android:textSize="15sp"
+            android:textColor="@color/black2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:visibility="invisible"
+            android:id="@+id/tv_red_packet_flag"
+            android:layout_toLeftOf="@+id/iv_arrow"
+            android:paddingRight="10dp"
+            android:textSize="15sp"
+            android:textColor="@color/primary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="即将过期"/>
+        <ImageView
+            android:id="@+id/iv_arrow"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="3dp"
+            android:src="@mipmap/back_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/gray5"/>
+    <RelativeLayout
+        android:id="@+id/rl_voucher"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:layout_height="50dp">
+        <TextView
+            android:text="我的代金券"
+            android:paddingLeft="15dp"
+            android:textSize="15sp"
+            android:textColor="@color/black2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:visibility="invisible"
+            android:id="@+id/tv_voucher_flag"
+            android:layout_toLeftOf="@+id/iv_arrow2"
+            android:paddingRight="10dp"
+            android:textSize="15sp"
+            android:textColor="@color/primary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="即将过期"/>
+        <ImageView
+            android:id="@+id/iv_arrow2"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:paddingTop="3dp"
+            android:src="@mipmap/back_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+</LinearLayout>
