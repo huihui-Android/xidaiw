@@ -102,7 +102,10 @@
         <activity android:name="xidaiw.mine.activity.WithdrawRecordActivity" />
         <activity android:name="xidaiw.mine.activity.MyAwardActivity" />
         <activity android:name="xidaiw.mine.activity.RedPacketActivity" />
-        <activity android:name="xidaiw.mine.activity.VoucherActivity"></activity>
+        <activity android:name="xidaiw.mine.activity.VoucherActivity" />
+        <activity android:name="xidaiw.mine.activity.MyInvestActivity" />
+        <activity android:name="xidaiw.mine.activity.InvestRecordActivity" />
+        <activity android:name="xidaiw.mine.activity.TransactionDetailActivity"></activity>
     </application>
 
 </manifest>
