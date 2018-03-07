@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,31 +25,29 @@ import com.xidaiw.btj.R;
 
 import java.util.List;
 
-import xidaiw.mine.entity.RedPacketInfo;
+import xidaiw.mine.entity.VoucherInfo;
 import xidaiw.util.HttpClient;
 import xidaiw.util.Urls;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RedPacketUsedFragment extends Fragment {
+public class VoucherUsableFragment extends Fragment {
     private ImageView ivGetTime1,ivGetTime2,ivOverTime1,ivOverTime2;
     private RelativeLayout rlGetTime,rlOverTime;
     private ListView lv;
     private TextView tvGetTime,tvOverTime;
-    private List<RedPacketInfo.DataBean.ListBean> list;
     private boolean getTimeFlag=true,overTimeFlag=true;
-    private static final String TAG = "RedPacketUsedFragment";
-    public RedPacketUsedFragment() {
+    private List<VoucherInfo.DataBean.ListBean> list;
+    private static final String TAG = "VoucherUsableFragment";
+    public VoucherUsableFragment() {
         // Required empty public constructor
     }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_red_packet_used, container, false);
+        return inflater.inflate(R.layout.fragment_voucher_usable, container, false);
     }
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -66,7 +65,7 @@ public class RedPacketUsedFragment extends Fragment {
         MyOnclickListener listener = new MyOnclickListener();
         rlGetTime.setOnClickListener(listener);
         rlOverTime.setOnClickListener(listener);
-        HttpClient.get(activity, Urls.getHost()+"/myOverTicket1",new RedPacketUsedAsyncHttpResponseHandler());
+        HttpClient.get(activity, Urls.getHost()+"/ticket/listAllUsableDJQ",new VoucherAsyncHttpResponseHandler());
 
     }
     private class MyOnclickListener implements View.OnClickListener{
@@ -110,12 +109,12 @@ public class RedPacketUsedFragment extends Fragment {
 
         @Override
         public int getCount() {
-            return list==null?0:list.size();
+            return list ==null?0: list.size();
         }
 
         @Override
         public Object getItem(int position) {
-            return list==null?0:list.get(position);
+            return list ==null?0:list.get(position);
         }
 
         @Override
@@ -128,39 +127,56 @@ public class RedPacketUsedFragment extends Fragment {
             ViewHolder holder;
             if (convertView==null){
                 holder=new ViewHolder();
-                convertView=View.inflate(getActivity(),R.layout.red_packet_used_item,null);
+                convertView=View.inflate(getActivity(),R.layout.voucher_usable_item,null);
                 holder.tvTitle=convertView.findViewById(R.id.tv_title);
                 holder.tvValue=convertView.findViewById(R.id.tv_value);
                 holder.tvDuration=convertView.findViewById(R.id.tv_duration);
                 holder.btnUse=convertView.findViewById(R.id.btn_use);
+                holder.tvVoucherDesc=convertView.findViewById(R.id.tv_voucher_desc);
                 convertView.setTag(holder);
             }else{
                 holder= (ViewHolder) convertView.getTag();
             }
-            if (list!=null){
-                if ("USED".equals(list.get(position).getTicketUseStatus())){
-                    holder.tvTitle.setText(list.get(position).getTicket().getName());
+            if (list !=null){
+                if ("未使用".equals(list.get(position).getTicketUseStatus())){
+                    holder.tvTitle.setText(list.get(position).getTicketName());
                     holder.tvValue.setText(list.get(position).getValue()+"");
-                    holder.tvDuration.setText(list.get(position).getStartDateStr().replace("-", ".")+"-"+list.get(position).getEndDateStr().replace("-", "."));
+                    holder.tvDuration.setText(list.get(position).getStartDate().replace("-", ".")+"-"+ list.get(position).getEndDate().replace("-", "."));
+                    holder.btnUse.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //HttpClient.get(getActivity(),Urls.getHost()+"/userTickeDetail1?userTicketId="+ list.get(position).getId(),new OpenRedPacketResponseHandler());
+                            Toast.makeText(getActivity(), "VoucherUsableFragment", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    holder.tvVoucherDesc.setText("满"+list.get(position).getUseLimit()+"元可用... >");
+                    Log.i(TAG, "getView: "+list.get(position).getUseLimit());
+                    holder.tvVoucherDesc.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Toast.makeText(getActivity(), "满"+list.get(position).getUseLimit()+"元可用... >", Toast.LENGTH_SHORT).show();
+                        }
+                    });
                     return convertView;
                 }
+                return null;
             }
             return null;
         }
     }
 
-    private class RedPacketUsedAsyncHttpResponseHandler extends AsyncHttpResponseHandler {
+    private class VoucherAsyncHttpResponseHandler extends AsyncHttpResponseHandler {
         @Override
         public void onSuccess(int i, String s) {
             super.onSuccess(i, s);
-            Log.i(TAG, "RedPacketAsyncHttpResponseHandler: "+s);
-            RedPacketInfo redPacketInfo = JSON.parseObject(s, RedPacketInfo.class);
-            if (redPacketInfo.isSuccess()){
-                list = redPacketInfo.getData().getList();
-                Log.i(TAG, "onActivityCreated: "+list.size());
+            Log.i(TAG, "VoucherAsyncHttpResponseHandler: "+s);
+            VoucherInfo voucherInfo = JSON.parseObject(s, VoucherInfo.class);
+            if (voucherInfo.isSuccess()){
+                list = voucherInfo.getData().getList();
+                Log.i(TAG, "VoucherAsyncHttpResponseHandler: "+ list.size());
                 lv.setAdapter(new MyAdapter());
             }else {
-                Toast.makeText(getActivity(), redPacketInfo.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), voucherInfo.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -169,5 +185,17 @@ public class RedPacketUsedFragment extends Fragment {
         public TextView tvDuration;
         public TextView tvValue;
         public Button btnUse;
+        public TextView tvVoucherDesc;
+    }
+
+    private class OpenRedPacketResponseHandler extends AsyncHttpResponseHandler {
+        @Override
+        public void onSuccess(int i, String s) {
+            super.onSuccess(i, s);
+            Log.i(TAG, "OpenRedPacketResponseHandler: "+s);
+            AlertDialog.Builder dialog=new AlertDialog.Builder(getActivity());
+            dialog.setMessage("打开红包成功!");
+            dialog.show();
+        }
     }
 }

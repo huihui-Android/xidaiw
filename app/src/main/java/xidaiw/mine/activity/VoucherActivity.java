@@ -16,38 +16,36 @@ import com.xidaiw.btj.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import xidaiw.mine.frag.RedPacketUsableFragment;
-import xidaiw.mine.frag.RedPacketUsedFragment;
+import xidaiw.mine.frag.VoucherUsableFragment;
+import xidaiw.mine.frag.VoucherUsedFragment;
 
-public class RedPacketActivity extends AppCompatActivity {
+public class VoucherActivity extends AppCompatActivity {
+
+    private VoucherUsableFragment voucherUsableFragment;
+    private VoucherUsedFragment voucherUsedFragment;
+    private List<Fragment> frameList;
     private TextView tvUsable,tvUsed;
-    private ImageView ivBack;
     private ViewPager vp;
-    private List<Fragment> frameList=null;
-    private RedPacketUsableFragment redPacketUsableFragment;
-    private RedPacketUsedFragment redPacketUsedFragment;
-    private MyOnclickListener listener;
+    private ImageView ivBack;
+    private static final String TAG = "VoucherActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_red_packet);
+        setContentView(R.layout.activity_voucher);
         initViews();
         bindViews();
-        redPacketUsableFragment = new RedPacketUsableFragment();
-        redPacketUsedFragment = new RedPacketUsedFragment();
-        frameList=new ArrayList<>(2);
-        frameList.add(redPacketUsableFragment);
-        frameList.add(redPacketUsedFragment);
+        voucherUsableFragment = new VoucherUsableFragment();
+        voucherUsedFragment = new VoucherUsedFragment();
+        frameList =new ArrayList<>();
+        frameList.add(voucherUsableFragment);
+        frameList.add(voucherUsedFragment);
         vp.setAdapter(new MyFragmentPagerAdapter(getSupportFragmentManager()));
-        vp.setOffscreenPageLimit(1);
         vp.setCurrentItem(0);
         vp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
             }
-
             @Override
             public void onPageSelected(int position) {
                 switch (position){
@@ -72,9 +70,8 @@ public class RedPacketActivity extends AppCompatActivity {
             }
         });
     }
-
     private void bindViews() {
-        listener = new MyOnclickListener();
+        MyOnclickListener listener=new MyOnclickListener();
         ivBack.setOnClickListener(listener);
         tvUsable.setOnClickListener(listener);
         tvUsed.setOnClickListener(listener);
@@ -85,7 +82,6 @@ public class RedPacketActivity extends AppCompatActivity {
         tvUsable= (TextView) findViewById(R.id.tv_usable);
         tvUsed= (TextView) findViewById(R.id.tv_used);
         vp= (ViewPager) findViewById(R.id.vp);
-
     }
     private class MyOnclickListener implements View.OnClickListener{
         @Override
@@ -111,7 +107,7 @@ public class RedPacketActivity extends AppCompatActivity {
             }
         }
     }
-    private class MyFragmentPagerAdapter extends FragmentPagerAdapter{
+    private class MyFragmentPagerAdapter extends FragmentPagerAdapter {
 
         public MyFragmentPagerAdapter(FragmentManager fm) {
             super(fm);

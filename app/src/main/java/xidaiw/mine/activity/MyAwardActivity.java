@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.xidaiw.btj.R;
 
@@ -51,10 +50,11 @@ public class MyAwardActivity extends AppCompatActivity {
                     Intent redpacket=new Intent(MyAwardActivity.this,RedPacketActivity.class);
                     startActivity(redpacket);
                     break;
-                case R.id.rl_voucher:
-                    Toast.makeText(MyAwardActivity.this, "我是代金券", Toast.LENGTH_SHORT).show();
+                case R.id.rl_voucher:  //voucher
+                    Intent voucher=new Intent(MyAwardActivity.this,VoucherActivity.class);
+                    startActivity(voucher);
                     break;
-            }
+           }
         }
     }
 }

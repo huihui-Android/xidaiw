@@ -101,7 +101,8 @@
         <activity android:name="xidaiw.mine.activity.RechargeRecordActivity" />
         <activity android:name="xidaiw.mine.activity.WithdrawRecordActivity" />
         <activity android:name="xidaiw.mine.activity.MyAwardActivity" />
-        <activity android:name="xidaiw.mine.activity.RedPacketActivity"></activity>
+        <activity android:name="xidaiw.mine.activity.RedPacketActivity" />
+        <activity android:name="xidaiw.mine.activity.VoucherActivity"></activity>
     </application>
 
 </manifest>

@@ -16,3 +16,7 @@ android {
         }
     }
 }
+
+dependencies {
+    androidTestCompile 'com.android.support.test:runner:0.5'
+}
