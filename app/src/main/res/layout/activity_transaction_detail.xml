@@ -36,7 +36,7 @@
         android:dividerHeight="1dp"
         ptr:ptrDrawable="@drawable/default_ptr_flip"
         ptr:ptrAnimationStyle="flip"
-        ptr:ptrHeaderBackground="#FFFFFF"
+        ptr:ptrHeaderBackground="#fafafa"
         ptr:ptrHeaderTextColor="@color/gray"
         >
     </com.handmark.pulltorefresh.library.PullToRefreshListView>

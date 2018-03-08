@@ -1,13 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activity_invest_record"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="xidaiw.mine.activity.InvestRecordActivity">
-
-</RelativeLayout>
+    android:orientation="vertical">
+    <include layout="@layout/header_text_table"/>
+    <LinearLayout
+        android:background="@drawable/invest_record_gradient_red_bg"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:paddingLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="待回款"/>
+            <TextView
+                android:id="@+id/tv_dhk"
+                android:textColor="@color/white"
+                android:textSize="21sp"
+                android:paddingLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="11dp"
+            android:paddingBottom="15dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:paddingLeft="15dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="本金"/>
+                <TextView
+                    android:id="@+id/tv_capital"
+                    android:paddingLeft="25dp"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"/>
+            </LinearLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:src="@mipmap/line"/>
+            <LinearLayout
+                android:paddingLeft="15dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="利息"/>
+                <TextView
+                    android:id="@+id/tv_interests"
+                    android:paddingLeft="25dp"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v4.view.ViewPager>
+</LinearLayout>

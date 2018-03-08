@@ -105,7 +105,11 @@
         <activity android:name="xidaiw.mine.activity.VoucherActivity" />
         <activity android:name="xidaiw.mine.activity.MyInvestActivity" />
         <activity android:name="xidaiw.mine.activity.InvestRecordActivity" />
-        <activity android:name="xidaiw.mine.activity.TransactionDetailActivity"></activity>
+        <activity android:name="xidaiw.mine.activity.TransactionDetailActivity" />
+        <activity android:name="xidaiw.mine.activity.InviteFriendsActivity" />
+        <activity android:name="xidaiw.mine.activity.AwardRulerActivity" />
+        <activity android:name="xidaiw.mine.activity.MyInviteActivity" />
+        <activity android:name="xidaiw.mine.activity.LookDetailActivity"></activity>
     </application>
 
 </manifest>

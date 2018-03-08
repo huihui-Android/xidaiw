@@ -52,11 +52,12 @@ public class MyInvestActivity extends AppCompatActivity {
                     Toast.makeText(MyInvestActivity.this, "我是帮助", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.rl_tzjl:
-                    Toast.makeText(MyInvestActivity.this, "我是投资记录", Toast.LENGTH_SHORT).show();
+                    Intent investRecord=new Intent(MyInvestActivity.this,InvestRecordActivity.class);
+                    startActivity(investRecord);
                     break;
                 case R.id.rl_jymx:
-                    Intent investRecord = new Intent(MyInvestActivity.this,TransactionDetailActivity.class);
-                    startActivity(investRecord);
+                    Intent TransactionRecord = new Intent(MyInvestActivity.this,TransactionDetailActivity.class);
+                    startActivity(TransactionRecord);
                     break;
             }
         }
