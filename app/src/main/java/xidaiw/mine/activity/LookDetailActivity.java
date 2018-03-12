@@ -11,7 +11,11 @@ import com.alibaba.fastjson.JSON;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.xidaiw.btj.R;
 
+import java.util.List;
+
+import xidaiw.mine.entity.InvestRecordGoingInfo;
 import xidaiw.mine.entity.PersonInfo;
+import xidaiw.util.GlobalUtils;
 import xidaiw.util.HttpClient;
 import xidaiw.util.Urls;
 
@@ -38,6 +42,9 @@ public class LookDetailActivity extends AppCompatActivity {
     private TextView tvComingDay1,tvComingDay2,tvComingDay3;
     private TextView tvTotalWithdraw,tvTotalRecharge,tvTotalInvest,tvTotalBorrowedMoney;
     private static final String TAG = "LookDetailActivity";
+    private int totalBuyAmount;
+    private double totalEarnings;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +58,7 @@ public class LookDetailActivity extends AppCompatActivity {
             }
         });
         HttpClient.get(LookDetailActivity.this, Urls.getHost()+"/account/indexNew",new AccountDataResponseHandler());
+        HttpClient.get(LookDetailActivity.this, Urls.getHost()+"/mycurrPlan1?showNav=0",new InvestRecordResponseHandler());
     }
 
     private void initViews() {
@@ -86,12 +94,36 @@ public class LookDetailActivity extends AppCompatActivity {
         @Override
         public void onSuccess(int i, String s) {
             super.onSuccess(i, s);
-            Log.i(TAG, "onSuccess: "+s);
+            Log.i(TAG, "AccountDataResponseHandler: "+s);
             PersonInfo personInfo = JSON.parseObject(s, PersonInfo.class);
             if (personInfo.isSuccess()){
                 PersonInfo.DataBean data = personInfo.getData();
                 String ableWithdrawalAmount = data.getAbleWithdrawalAmount();
                 tvAvailableBalance.setText(ableWithdrawalAmount);
+                tvFrozenCapital.setText(data.getCustomerAccount().getTotalFreezen());
+                tvAssetsTotal.setText(data.getCustomerAccount().getTotalAssets()+"");
+                tvInvestPayback.setText(GlobalUtils.NumberFormatTranferTwo(data.getCustomerAccount().getTotalEarnings()));
+                tvInterestReceived.setText(GlobalUtils.NumberFormatTranferTwo(data.getCustomerAccount().getTotalEarnings()));
+            }
+        }
+    }
+
+    private class InvestRecordResponseHandler extends AsyncHttpResponseHandler {
+        @Override
+        public void onSuccess(int i, String s) {
+            super.onSuccess(i, s);
+            Log.i(TAG, "InvestRecordResponseHandler: "+s);
+            InvestRecordGoingInfo investRecordGoingInfo = JSON.parseObject(s, InvestRecordGoingInfo.class);
+            if (investRecordGoingInfo.isSuccess()){
+                List<InvestRecordGoingInfo.DataBean.ProductAccountListBean> productAccountList = investRecordGoingInfo.getData().getProductAccountList();
+                for (int j=0;j<productAccountList.size();j++){
+                    if (productAccountList.get(j).getRemainingDay()>0){
+                        totalBuyAmount = productAccountList.get(j).getTotalBuyAmount();
+                    }
+                    totalEarnings = productAccountList.get(j).getTotalEarnings();
+                }
+                tvUnPayCaptical.setText(GlobalUtils.NumberFormatTranferTwo(totalBuyAmount+""));
+                tvUnPayInterest.setText(totalEarnings+"");
 
             }
         }

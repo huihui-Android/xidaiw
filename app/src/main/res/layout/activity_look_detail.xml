@@ -21,7 +21,7 @@
                 android:textColor="#707070"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="资金总额"/>
+                android:text="资产总额"/>
             <TextView
                 android:id="@+id/tv_assets_total"
                 android:gravity="center"

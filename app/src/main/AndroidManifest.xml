@@ -109,7 +109,10 @@
         <activity android:name="xidaiw.mine.activity.InviteFriendsActivity" />
         <activity android:name="xidaiw.mine.activity.AwardRulerActivity" />
         <activity android:name="xidaiw.mine.activity.MyInviteActivity" />
-        <activity android:name="xidaiw.mine.activity.LookDetailActivity"></activity>
+        <activity android:name="xidaiw.mine.activity.LookDetailActivity" />
+        <activity android:name="xidaiw.find.activity.GoldMallActivity" />
+        <activity android:name="xidaiw.find.activity.HelpCenterActivity" />
+        <activity android:name="xidaiw.find.activity.BorrowServiceActivity"></activity>
     </application>
 
 </manifest>
