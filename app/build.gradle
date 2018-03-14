@@ -40,6 +40,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile files('libs/umerror_android_1.0.0.jar')
     compile 'com.android.support:support-v4:26.+'
+    compile 'com.android.support:cardview-v7:26.+'
     compile 'com.umeng.sdk:common:latest.integration'
     compile 'com.umeng.sdk:analytics:latest.integration'
 }

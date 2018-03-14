@@ -36,6 +36,7 @@ import xidaiw.index.entity.DataBean;
 import xidaiw.index.entity.ProductBean;
 import xidaiw.index.entity.adapter.BannerPageAdapter2;
 import xidaiw.licai.bean.LoanPageAdapter;
+import xidaiw.util.DensityUtil;
 import xidaiw.util.GlobalUtils;
 import xidaiw.util.HttpClient;
 import xidaiw.util.Urls;
@@ -156,7 +157,7 @@ public class FragmentIndex extends Fragment {
                     ImageView image =  new ImageView(getActivity());
                     LinearLayout.LayoutParams margin = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                             LinearLayout.LayoutParams.WRAP_CONTENT);
-                    margin.setMargins(10, 0, 0, 0);
+                    margin.setMargins(DensityUtil.dip2px(getActivity(),5), 0, 0, 0);
                     image.setLayoutParams(new ViewGroup.LayoutParams(2, 2));
                     if (i == 0){
                         image.setBackgroundResource(R.drawable.viewpager_dot_able);

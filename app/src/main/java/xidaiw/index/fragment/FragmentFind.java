@@ -15,9 +15,11 @@ import android.widget.Toast;
 
 import com.xidaiw.btj.R;
 
+import xidaiw.find.activity.Attention2WxActivity;
 import xidaiw.find.activity.BorrowServiceActivity;
 import xidaiw.find.activity.GoldMallActivity;
 import xidaiw.find.activity.HelpCenterActivity;
+import xidaiw.find.activity.NewsCenterActivity;
 import xidaiw.index.activity.InviteAwardActivity;
 
 /**
@@ -100,11 +102,15 @@ public class FragmentFind extends Fragment implements View.OnClickListener{
                 startActivity(borrowService);
                 break;
             case R.id.rl_wx:
-
+                Intent attentionWX=new Intent(getActivity(), Attention2WxActivity.class);
+                startActivity(attentionWX);
                 break;
             case R.id.rl_xdtool:
+                Toast.makeText(getActivity(), "暂未开通", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.rl_news:
+                Intent newsCenter=new Intent(getActivity(), NewsCenterActivity.class);
+                startActivity(newsCenter);
                 break;
         }
     }

@@ -41,6 +41,7 @@ import xidaiw.mine.activity.SafeCenterActivity;
 import xidaiw.mine.activity.WithdrawActivity;
 import xidaiw.mine.entity.BankInfo;
 import xidaiw.mine.entity.PersonInfo;
+import xidaiw.util.DensityUtil;
 import xidaiw.util.HttpClient;
 import xidaiw.util.Urls;
 
@@ -304,7 +305,7 @@ public class FragmentMine extends Fragment{
             rlLogin.setVisibility(View.VISIBLE);
             tvPhone.setText("立即登录 >");
             RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-            lp.setMargins(95, 35, 0, 0);
+            lp.setMargins(DensityUtil.dip2px(getActivity(),60),DensityUtil.dip2px(getActivity(),30), 0, 0);
             tvPhone.setLayoutParams(lp);
             tvTotalBalance.setText("0.00");
             tvAvailablBalance.setText("0.00");

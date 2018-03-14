@@ -112,7 +112,9 @@
         <activity android:name="xidaiw.mine.activity.LookDetailActivity" />
         <activity android:name="xidaiw.find.activity.GoldMallActivity" />
         <activity android:name="xidaiw.find.activity.HelpCenterActivity" />
-        <activity android:name="xidaiw.find.activity.BorrowServiceActivity"></activity>
+        <activity android:name="xidaiw.find.activity.BorrowServiceActivity" />
+        <activity android:name="xidaiw.find.activity.Attention2WxActivity" />
+        <activity android:name="xidaiw.find.activity.NewsCenterActivity"></activity>
     </application>
 
 </manifest>
