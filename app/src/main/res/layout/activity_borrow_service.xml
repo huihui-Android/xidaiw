@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
     <include layout="@layout/header"/>
+
     <ScrollView
         android:scrollbars="none"
         android:layout_width="match_parent"
@@ -15,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <LinearLayout
+
                 android:paddingBottom="35dp"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
@@ -54,6 +56,42 @@
                     </LinearLayout>
                 </LinearLayout>
                 <LinearLayout
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:id="@+id/ll_borrow_type"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/borrow_money_input"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+                    <TextView
+                        android:paddingLeft="20dp"
+                        android:textSize="14sp"
+                        android:textColor="#313131"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="选择类型"/>
+                    <View
+                        android:layout_marginLeft="20dp"
+                        android:layout_width="0.1dp"
+                        android:layout_height="30dp"
+                        android:background="#b5b5b5"/>
+                    <EditText
+                        android:id="@+id/et_borrow_type"
+                        android:background="@null"
+                        android:paddingLeft="20dp"
+                        android:inputType="none"
+                        android:textSize="14sp"
+                        android:textColor="#313131"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="请选择借款的类型"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/ll_city"
                     android:layout_marginTop="15dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
@@ -75,6 +113,7 @@
                         android:layout_height="30dp"
                         android:background="#b5b5b5"/>
                     <EditText
+                        android:id="@+id/et_city"
                         android:background="@null"
                         android:paddingLeft="20dp"
                         android:textSize="14sp"
@@ -84,6 +123,7 @@
                         android:hint="深圳市"/>
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/ll_mobile"
                     android:layout_marginTop="15dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
@@ -105,6 +145,7 @@
                         android:layout_height="30dp"
                         android:background="#b5b5b5"/>
                     <EditText
+                        android:id="@+id/et_mobile"
                         android:background="@null"
                         android:paddingLeft="20dp"
                         android:textSize="14sp"
@@ -114,6 +155,7 @@
                         android:hint="请填写您的手机号码"/>
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/ll_verify"
                     android:layout_marginTop="15dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
@@ -122,7 +164,8 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="50dp">
-                    <ImageView
+                    <xidaiw.widget.MyImageView
+                        android:id="@+id/iv_verify"
                         android:layout_width="93dp"
                         android:layout_height="45dp"
                         android:scaleType="fitXY"
@@ -133,6 +176,7 @@
                         android:layout_height="30dp"
                         android:background="#b5b5b5"/>
                     <EditText
+                        android:id="@+id/et_verify"
                         android:background="@null"
                         android:paddingLeft="20dp"
                         android:textSize="14sp"
@@ -152,6 +196,7 @@
                         android:layout_height="0.1dp"
                         android:background="#e5e5e5"/>
                     <TextView
+                        android:id="@+id/tv_refresh_verify"
                         android:textSize="11sp"
                         android:textColor="@color/primary"
                         android:layout_width="wrap_content"
@@ -169,12 +214,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <CheckBox
+                        android:id="@+id/cb_agree"
                         android:textSize="13sp"
                         android:textColor="#898989"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="同意"/>
                     <TextView
+                        android:id="@+id/tv_user_protocol"
                         android:textColor="@color/primary"
                         android:textSize="13sp"
                         android:layout_width="wrap_content"
@@ -188,6 +235,19 @@
                         android:text="成为本站会员"/>
                 </LinearLayout>
                 <Button
+                    android:id="@+id/btn_confirm1"
+                    android:layout_marginTop="15dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/btn_application_shape"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="提交申请"/>
+                <Button
+                    android:visibility="gone"
+                    android:id="@+id/btn_confirm2"
                     android:layout_marginTop="15dp"
                     android:textSize="16sp"
                     android:textColor="@color/white"
@@ -199,6 +259,7 @@
                     android:text="提交申请"/>
             </LinearLayout>
             <LinearLayout
+
                 android:background="#f4f4f4"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -208,7 +269,7 @@
                     android:paddingTop="25dp"
                     android:layout_weight="1"
                     android:orientation="horizontal"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content">
                     <ImageView
                         android:layout_width="wrap_content"
@@ -226,7 +287,7 @@
                             android:layout_height="wrap_content"
                             android:text="额度高"/>
                         <TextView
-                            android:paddingTop="9dp"
+                            android:paddingTop="6dp"
                             android:textSize="13sp"
                             android:textColor="#707070"
                             android:layout_width="wrap_content"
@@ -235,10 +296,11 @@
                     </LinearLayout>
                 </LinearLayout>
                 <LinearLayout
+                    android:paddingLeft="15dp"
                     android:paddingTop="25dp"
                     android:layout_weight="1"
                     android:orientation="horizontal"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content">
                     <ImageView
                         android:layout_width="wrap_content"
@@ -254,15 +316,334 @@
                             android:textColor="#535353"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="额度高"/>
+                            android:text="放款快"/>
                         <TextView
-                            android:paddingTop="9dp"
+                            android:paddingTop="6dp"
                             android:textSize="13sp"
                             android:textColor="#707070"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="最高可达九成"/>
+                            android:text="1小时内成功放款"/>
                     </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+
+                android:paddingBottom="25dp"
+                android:background="#f4f4f4"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:paddingLeft="15dp"
+                    android:paddingTop="25dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/param"/>
+                    <LinearLayout
+                        android:paddingLeft="8dp"
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:textSize="16sp"
+                            android:textColor="#535353"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="流程简"/>
+                        <TextView
+                            android:paddingTop="6dp"
+                            android:textSize="13sp"
+                            android:textColor="#707070"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="手续办理简单快捷"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingLeft="15dp"
+                    android:paddingTop="25dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/address"/>
+                    <LinearLayout
+                        android:paddingLeft="8dp"
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:textSize="16sp"
+                            android:textColor="#535353"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="覆盖广"/>
+                        <TextView
+                            android:paddingTop="6dp"
+                            android:textSize="13sp"
+                            android:textColor="#707070"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="网点覆盖全国"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <ImageView
+                android:src="@mipmap/success"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:paddingBottom="30dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:id="@+id/rl_application_requirement"
+                    android:paddingTop="40dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textSize="15sp"
+                        android:textColor="#535353"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="申请条件"/>
+                    <ImageView
+                        android:id="@+id/iv_application_requirement"
+                        android:paddingTop="5dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/jt2"/>
+                </RelativeLayout>
+                <View
+                    android:layout_marginRight="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="#e5e5e5"/>
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/tv_application_requirement"
+                    android:paddingLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:lineSpacingExtra="10dp"
+                    android:text="18-60周岁\n名下拥有当地车管所登记的车辆\n机动车登记时间≤10年"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <RelativeLayout
+                    android:id="@+id/rl_application_data"
+                    android:paddingTop="40dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textSize="15sp"
+                        android:textColor="#535353"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="申请资料"/>
+                    <ImageView
+                        android:id="@+id/iv_application_data"
+                        android:paddingTop="5dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/jt2"/>
+                </RelativeLayout>
+                <View
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="#e5e5e5"/>
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/tv_application_data"
+                    android:paddingLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:lineSpacingExtra="10dp"
+                    android:text="身份证\n机动车登记证、行驶证\n机动车辆保险单\n近3个月常用银行卡流水"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <RelativeLayout
+                    android:id="@+id/rl_common_problems"
+                    android:paddingTop="40dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textSize="15sp"
+                        android:textColor="#535353"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="常见问题"/>
+                    <ImageView
+                        android:id="@+id/iv_common_problems"
+                        android:paddingTop="5dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/jt2"/>
+                </RelativeLayout>
+                <View
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="#e5e5e5"/>
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/ll_common_problems"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/ll_common_problem1"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/iv_common_problem1"
+                        android:paddingLeft="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/arrow_down"/>
+                    <TextView
+                        android:paddingLeft="8dp"
+                        android:lineSpacingExtra="10dp"
+                        android:text="网上提交申请,借款如何办理,一般需要多长时间?"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/tv_common_problem1"
+                    android:paddingTop="15dp"
+                    android:textSize="14sp"
+                    android:lineSpacingExtra="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="35dp"
+                    android:textColor="#313131"
+                    android:text="答:借款人在网上成功提交资料后,当地门店客户服务人员会及时电话联系您.需您携带相关资料到店进行车辆评估及审核,1小时内即可成功放款。"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_common_problem2"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/iv_common_problem2"
+                        android:paddingLeft="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/arrow_down"/>
+                    <TextView
+                        android:paddingLeft="8dp"
+                        android:lineSpacingExtra="10dp"
+                        android:text="借款额度是多少?"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/tv_common_problem2"
+                    android:paddingTop="15dp"
+                    android:textSize="14sp"
+                    android:lineSpacingExtra="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="35dp"
+                    android:textColor="#313131"
+                    android:text="具体额度根据借款人的汽车、收入、信用等综合评估，以您最终的借款额度为准。"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_common_problem3"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/iv_common_problem3"
+                        android:paddingLeft="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/arrow_down"/>
+                    <TextView
+                        android:paddingLeft="8dp"
+                        android:lineSpacingExtra="10dp"
+                        android:text="借款需要哪些费用?"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/tv_common_problem3"
+                    android:paddingTop="15dp"
+                    android:textSize="14sp"
+                    android:lineSpacingExtra="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="35dp"
+                    android:textColor="#313131"
+                    android:text="借款人借款成功后需要支付借款利息费用，并向平台线下合作机构支付一定的服务费用。具体以您借款办理情况而定。"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_common_problem4"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/iv_common_problem4"
+                        android:paddingLeft="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/arrow_down"/>
+                    <TextView
+                        android:paddingLeft="8dp"
+                        android:lineSpacingExtra="10dp"
+                        android:text="借款期限是多久?"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/tv_common_problem4"
+                    android:paddingTop="15dp"
+                    android:textSize="14sp"
+                    android:lineSpacingExtra="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="35dp"
+                    android:textColor="#313131"
+                    android:text="我们的车贷业务还款方式种类多样，还款期限灵活；最短1个月，最长18个月，可根据借款人的需求和具体情况搭配选择，详情可咨询客服热线400-0755-190。"/>
+
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

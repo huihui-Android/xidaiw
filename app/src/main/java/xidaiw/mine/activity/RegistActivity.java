@@ -80,6 +80,7 @@ public class RegistActivity extends AppCompatActivity {
         bindEvent();
         tvHeader.setText("注册");
         ivYzm.setImageURL(Urls.getQueryImageCode());
+
     }
     private void bindEvent() {
         ivBack.setOnClickListener(clickListener);
