@@ -157,7 +157,7 @@ public class LoanPageAdapter {
 			private String finishRatio;
 			private int id;
 			private String idStr;
-			private int interest;
+			private double interest;
 			private String maturityDuration;
 			private int maxAmount;
 			private int maxInterest;
@@ -277,11 +277,11 @@ public class LoanPageAdapter {
 				this.idStr = idStr;
 			}
 
-			public int getInterest() {
+			public double getInterest() {
 				return interest;
 			}
 
-			public void setInterest(int interest) {
+			public void setInterest(double interest) {
 				this.interest = interest;
 			}
 

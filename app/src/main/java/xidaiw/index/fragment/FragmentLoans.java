@@ -23,11 +23,13 @@ import com.xidaiw.btj.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import xidaiw.licai.adapter.LoansAdapter11;
+import xidaiw.licai.adapter.LoansAdapter;
 import xidaiw.licai.bean.LoanPageAdapter;
 import xidaiw.util.HttpClient;
 import xidaiw.util.Urls;
 import xidaiw.widget.RoundProgressBar;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -40,13 +42,12 @@ public class FragmentLoans extends Fragment {
     private List<LoanPageAdapter.DataBean.ListBean> loanList;
     private int pageSize=10;
     private RoundProgressBar roundProgressBar,roundProgressBar2;
-    LoansAdapter11 adapter;
+    LoansAdapter adapter=null;
+    private View newHand=null;
 
     public FragmentLoans() {
         // Required empty public constructor
     }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -86,7 +87,7 @@ public class FragmentLoans extends Fragment {
     public  void RefreshLoanlist(){
         RequestParams params = new RequestParams();
         currenPage = 1;
-        params.put("productChannelId", 2+"");
+        params.put("productChannelId", "2");
         params.put("pageNow", "1");
         params.put("pageSize", "10");
         HttpClient.post(getActivity(), Urls.getHost()+"/product/list", params, new LoansAsyncResponseHandler());
@@ -112,7 +113,6 @@ public class FragmentLoans extends Fragment {
         public void onPullUpToRefresh(PullToRefreshBase refreshView){
             isNotPull = false;
             currenPage = currenPage+1;
-//            if (currenPage>=2){currenPage=2;}
             RequestParams params = new RequestParams();
             params.put("productChannelId", 2+"");
             params.put("pageNow", currenPage+"");
@@ -122,11 +122,9 @@ public class FragmentLoans extends Fragment {
     }
 //    private View newHand = null;
     public class LoansAsyncResponseHandler extends AsyncHttpResponseHandler {
-        public void onStart() {
-            super.onStart();
-        }
         public void onSuccess(int arg0, String json) {
             super.onSuccess(arg0, json);
+            Log.d(TAG, "LoansAsyncResponseHandler: "+json);
             LoanPageAdapter loanPageAdapter = JSON.parseObject(json,LoanPageAdapter.class);
             LoanPageAdapter.DataBean data = loanPageAdapter.getData();
             ArrayList<LoanPageAdapter.DataBean.ListBean> list = data.getList();
@@ -140,11 +138,12 @@ public class FragmentLoans extends Fragment {
             }
             loanList.addAll(list);
             if(adapter==null){
-                adapter = new LoansAdapter11(getActivity(),loanList);
+                adapter = new LoansAdapter(getActivity(),loanList);
             }
             if(isNotPull){//第二页无需重新绑定
-//                newHand = LayoutInflater.from(getActivity()).inflate(R.layout.productlist_item_newhand, null);
-//                listView.getRefreshableView().addHeaderView(newHand);
+                newHand = LayoutInflater.from(getActivity()).inflate(R.layout.productlist_item_newhand, null);
+                listView.getRefreshableView().addHeaderView(newHand);
+                Toast.makeText(getActivity(), "我是...", Toast.LENGTH_SHORT).show();
                 listView.setAdapter(adapter);
             }
             adapter.notifyDataSetChanged();
