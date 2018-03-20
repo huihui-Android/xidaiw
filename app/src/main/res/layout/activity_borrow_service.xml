@@ -113,6 +113,7 @@
                         android:layout_height="30dp"
                         android:background="#b5b5b5"/>
                     <EditText
+                        android:inputType="none"
                         android:id="@+id/et_city"
                         android:background="@null"
                         android:paddingLeft="20dp"
@@ -155,6 +156,39 @@
                         android:hint="请填写您的手机号码"/>
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/ll_sex"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/borrow_money_input"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+                    <TextView
+                        android:paddingLeft="20dp"
+                        android:textSize="14sp"
+                        android:textColor="#313131"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="您的称呼"/>
+                    <View
+                        android:layout_marginLeft="20dp"
+                        android:layout_width="0.1dp"
+                        android:layout_height="30dp"
+                        android:background="#b5b5b5"/>
+                    <EditText
+                        android:id="@+id/et_sex"
+                        android:background="@null"
+                        android:paddingLeft="20dp"
+                        android:textSize="14sp"
+                        android:textColor="#313131"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="先生"/>
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/ll_verify"
                     android:layout_marginTop="15dp"
                     android:layout_marginLeft="15dp"
@@ -186,6 +220,40 @@
                         android:hint="请填写图形验证码"/>
                 </LinearLayout>
                 <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/ll_sms_code"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/borrow_money_input"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+                    <TextView
+                        android:paddingLeft="20dp"
+                        android:textSize="14sp"
+                        android:textColor="#313131"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="动态密码"/>
+                    <View
+                        android:layout_marginLeft="20dp"
+                        android:layout_width="0.1dp"
+                        android:layout_height="30dp"
+                        android:background="#b5b5b5"/>
+                    <EditText
+                        android:id="@+id/et_sms_code"
+                        android:background="@null"
+                        android:paddingLeft="20dp"
+                        android:textSize="14sp"
+                        android:textColor="#313131"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="请填写动态密码"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/ll_refresh_verify"
                     android:layout_marginTop="20dp"
                     android:gravity="center"
                     android:orientation="horizontal"
@@ -207,6 +275,16 @@
                         android:layout_height="0.1dp"
                         android:background="#e5e5e5"/>
                 </LinearLayout>
+                <TextView
+                    android:visibility="gone"
+                    android:textSize="11sp"
+                    android:padding="5dp"
+                    android:textColor="@color/primary"
+                    android:gravity="center"
+                    android:id="@+id/tv_getTextCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="重复短信验证码"/>
                 <LinearLayout
                     android:layout_marginTop="10dp"
                     android:paddingLeft="15dp"
@@ -259,7 +337,6 @@
                     android:text="提交申请"/>
             </LinearLayout>
             <LinearLayout
-
                 android:background="#f4f4f4"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"

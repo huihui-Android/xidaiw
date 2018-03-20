@@ -1,13 +1,19 @@
 package xidaiw.find.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -18,10 +24,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 import com.xidaiw.btj.R;
 
 import xidaiw.mine.activity.UserProtocolActivity;
 import xidaiw.util.DensityUtil;
+import xidaiw.util.HttpClient;
 import xidaiw.widget.MyImageView;
 
 public class BorrowServiceActivity extends AppCompatActivity {
@@ -40,15 +49,48 @@ public class BorrowServiceActivity extends AppCompatActivity {
     private TextView tvHeader;
     private TextView tvUserProtocol;
 
-    private LinearLayout llCity,llMobile,llVerify,llBorrowType;
-    private EditText etCity,etMobile,etVerify,etBorrowType;
+    private LinearLayout llCity,llMobile,llVerify,llBorrowType,llSex;
+    private EditText etCity,etMobile,etVerify,etBorrowType,etSex;
 
     private CheckBox cbAgree;
     private TextView tvRefreshVerify;
 
     private Button btnConfirm1,btnConfirm2;
     private MyImageView ivVerify;
-    private PopupWindow borrowTypepop=null;
+    private PopupWindow borrowTypePop =null;
+    private PopupWindow cityPop=null;
+    private PopupWindow sexPop=null;
+
+    private LinearLayout llRefreshVerify;
+    private LinearLayout llSmsCode;
+    private TextView tvGetTextCode;
+    private static final String TAG = "BorrowServiceActivity";
+
+
+    private Handler handler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case 0:
+                    if (msg.arg1 == 0) {
+                        tvGetTextCode.setText("重新获取");
+                        tvGetTextCode.setClickable(true);
+                    } else {
+                        tvGetTextCode.setText( msg.arg1 + "秒后重新获取");
+                        tvGetTextCode.setClickable(false);
+                    }
+                    break;
+            }
+        }
+    };
+    private String type;
+    private String mobile;
+    private String verify;
+    private String sex;
+    private String city;
+    private EditText etSmsCode;
+    private String smsCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,43 +104,108 @@ public class BorrowServiceActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 etBorrowType.setInputType(InputType.TYPE_NULL);
-                borrowTypepop = new PopupWindow(BorrowServiceActivity.this);
+                if (borrowTypePop ==null){
+                    borrowTypePop = new PopupWindow(BorrowServiceActivity.this);
+                }
                 View view = View.inflate(BorrowServiceActivity.this, R.layout.borrow_money_type, null);
-                borrowTypepop.setContentView(view);
-                borrowTypepop.setWidth(RelativeLayout.LayoutParams.MATCH_PARENT);
-                borrowTypepop.setHeight(RelativeLayout.LayoutParams.WRAP_CONTENT);
-                borrowTypepop.setBackgroundDrawable(new BitmapDrawable());
-                borrowTypepop.showAsDropDown(llBorrowType,0, DensityUtil.dip2px(BorrowServiceActivity.this,5));
+                borrowTypePop.setContentView(view);
+                borrowTypePop.setWidth(RelativeLayout.LayoutParams.MATCH_PARENT);
+                borrowTypePop.setHeight(RelativeLayout.LayoutParams.WRAP_CONTENT);
+                borrowTypePop.setBackgroundDrawable(new BitmapDrawable());
+                borrowTypePop.showAsDropDown(llBorrowType,0, DensityUtil.dip2px(BorrowServiceActivity.this,5));
                 view.findViewById(R.id.tv_borrow_money_type_1).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         etBorrowType.setText("车辆抵押贷款");
-                        borrowTypepop.dismiss();
+                        borrowTypePop.dismiss();
                     }
                 });
                 view.findViewById(R.id.tv_borrow_money_type_2).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         etBorrowType.setText("企事业公务员信用贷款");
-                        borrowTypepop.dismiss();
+                        borrowTypePop.dismiss();
                     }
                 });
                 view.findViewById(R.id.tv_borrow_money_type_3).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         etBorrowType.setText("二手车分期贷款");
-                        borrowTypepop.dismiss();
+                        borrowTypePop.dismiss();
                     }
                 });
                 view.findViewById(R.id.tv_borrow_money_type_4).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         etBorrowType.setText("新车分期贷款");
-                        borrowTypepop.dismiss();
+                        borrowTypePop.dismiss();
                     }
                 });
-                //borrowTypepop.setOutsideTouchable(true);
-                //borrowTypepop.setFocusable(true);
+                borrowTypePop.setOutsideTouchable(true);
+                //borrowTypePop.setFocusable(true);
+                return true;
+            }
+        });
+        etCity.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (cityPop==null){
+                    cityPop = new PopupWindow(BorrowServiceActivity.this);
+                }
+                etSex.setInputType(InputType.TYPE_NULL);
+                View view = View.inflate(BorrowServiceActivity.this, R.layout.borrow_money_city, null);
+                cityPop.setContentView(view);
+                cityPop.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+                cityPop.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+                cityPop.setBackgroundDrawable(null);
+                view.findViewById(R.id.ll_shenzhen).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        etCity.setText("深圳市");
+                        cityPop.dismiss();
+                    }
+                });
+                view.findViewById(R.id.ll_huizhou).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        etCity.setText("惠州市");
+                        cityPop.dismiss();
+                    }
+                });
+                cityPop.showAsDropDown(llCity,0,DensityUtil.dip2px(BorrowServiceActivity.this,5));
+                cityPop.setOutsideTouchable(true);
+
+                return true;
+            }
+        });
+        etSex.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (sexPop==null){
+                    sexPop = new PopupWindow(BorrowServiceActivity.this);
+                }
+
+                View view = View.inflate(BorrowServiceActivity.this, R.layout.borrow_money_sex, null);
+                sexPop.setContentView(view);
+                sexPop.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+                sexPop.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+                sexPop.setBackgroundDrawable(null);
+                view.findViewById(R.id.tv_male).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        etSex.setText("先生");
+                        sexPop.dismiss();
+                    }
+                });
+                view.findViewById(R.id.tv_female).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        etSex.setText("女士");
+                        sexPop.dismiss();
+                    }
+                });
+                sexPop.showAsDropDown(llSex,0,DensityUtil.dip2px(BorrowServiceActivity.this,5));
+                sexPop.setOutsideTouchable(true);
                 return true;
             }
         });
@@ -119,11 +226,13 @@ public class BorrowServiceActivity extends AppCompatActivity {
         btnConfirm1.setOnClickListener(listener);
         btnConfirm2.setOnClickListener(listener);
         ivVerify.setOnClickListener(listener);
-        llBorrowType.setOnClickListener(listener);
+        //llBorrowType.setOnClickListener(listener);
         llCity.setOnClickListener(listener);
         llMobile.setOnClickListener(listener);
         llVerify.setOnClickListener(listener);
         //etBorrowType.setOnClickListener(listener);
+        tvGetTextCode.setOnClickListener(listener);
+
 
     }
 
@@ -165,8 +274,27 @@ public class BorrowServiceActivity extends AppCompatActivity {
         btnConfirm1= (Button) findViewById(R.id.btn_confirm1);
         btnConfirm2= (Button) findViewById(R.id.btn_confirm2);
         ivVerify= (MyImageView) findViewById(R.id.iv_verify);
+        llSex= (LinearLayout) findViewById(R.id.ll_sex);
+        etSex= (EditText) findViewById(R.id.et_sex);
+        llSmsCode= (LinearLayout) findViewById(R.id.ll_sms_code);
+        llRefreshVerify= (LinearLayout) findViewById(R.id.ll_refresh_verify);
+        tvGetTextCode= (TextView) findViewById(R.id.tv_getTextCode);
+        etSmsCode = (EditText) findViewById(R.id.et_sms_code);
     }
+
+    public void getSmsCode() {
+        String mobile = etMobile.getText().toString().trim();
+        RequestParams params=new RequestParams();
+        params.put("phonenum",mobile);
+        HttpClient.post(BorrowServiceActivity.this,"http://mb.xidaiw.com/loan/getSMSCode",params,new GetSmsCodeResponseHandler());
+
+
+    }
+
     private class MyOnclickListener implements View.OnClickListener{
+
+
+
         @Override
         public void onClick(View v) {
             switch (v.getId()){
@@ -258,9 +386,12 @@ public class BorrowServiceActivity extends AppCompatActivity {
                     ivVerify.setImageURL("http://mb.xidaiw.com/Index/verify");
                     break;
                 case R.id.btn_confirm1:
-                    String city = etCity.getText().toString().trim();
-                    String mobile = etMobile.getText().toString().trim();
-                    String verify = etVerify.getText().toString().trim();
+                    type = etBorrowType.getText().toString().trim();
+                    city = etCity.getText().toString().trim();
+                    mobile = etMobile.getText().toString().trim();
+                    verify = etVerify.getText().toString().trim();
+                    sex = etSex.getText().toString().trim();
+
                     if (TextUtils.isEmpty(city)){
                         Toast.makeText(BorrowServiceActivity.this, "请选择您所在的城市", Toast.LENGTH_SHORT).show();
                         return;
@@ -269,59 +400,54 @@ public class BorrowServiceActivity extends AppCompatActivity {
                         Toast.makeText(BorrowServiceActivity.this, "请输入您的手机号码", Toast.LENGTH_SHORT).show();
                         return;
                     }
+
                     if (TextUtils.isEmpty(verify)){
                         Toast.makeText(BorrowServiceActivity.this, "请输入图片验证码", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    Toast.makeText(BorrowServiceActivity.this, "确认1", Toast.LENGTH_SHORT).show();
-                    btnConfirm2.setVisibility(View.VISIBLE);
-                    btnConfirm1.setVisibility(View.GONE);
+                    if (!cbAgree.isChecked()){
+                        Toast.makeText(BorrowServiceActivity.this, "请同意《喜袋网用户使用协议》", Toast.LENGTH_SHORT).show();
+                        return;
+                    }else{
+                        checkMobile();
+                    }
                     break;
                 case R.id.btn_confirm2:
-                    Toast.makeText(BorrowServiceActivity.this, "提交成功!", Toast.LENGTH_SHORT).show();
+                    type = etBorrowType.getText().toString().trim();
+                    city = etCity.getText().toString().trim();
+                    mobile = etMobile.getText().toString().trim();
+                    sex = etSex.getText().toString().trim();
+                    smsCode = etSmsCode.getText().toString().trim();
+
+                    if (TextUtils.isEmpty(city)){
+                        Toast.makeText(BorrowServiceActivity.this, "请选择您所在的城市", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (TextUtils.isEmpty(mobile)){
+                        Toast.makeText(BorrowServiceActivity.this, "请输入您的手机号码", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    if (TextUtils.isEmpty(smsCode)){
+                        Toast.makeText(BorrowServiceActivity.this, "请输入动态密码", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (!cbAgree.isChecked()){
+                        Toast.makeText(BorrowServiceActivity.this, "请同意《喜袋网用户使用协议》", Toast.LENGTH_SHORT).show();
+                        return;
+                    }else{
+                        RequestParams params=new RequestParams();
+                        params.put("mortgage",type);
+                        params.put("city",city);
+                        params.put("mobile",mobile);
+                        params.put("sms_code",smsCode);
+                        params.put("sex",sex);
+                        HttpClient.post(BorrowServiceActivity.this,"http://mb.xidaiw.com/loan/checkSMSCode",params,new CheckSmsCodeResponseHandler());
+                    }
                     break;
                 case R.id.iv_verify:
                     ivVerify.setImageURL("http://mb.xidaiw.com/Index/verify");
                     break;
-                case R.id.et_borrow_type:
-                    borrowTypepop = new PopupWindow(BorrowServiceActivity.this);
-
-                    View view = View.inflate(BorrowServiceActivity.this, R.layout.borrow_money_type, null);
-                    borrowTypepop.setContentView(view);
-                    borrowTypepop.setWidth(RelativeLayout.LayoutParams.MATCH_PARENT);
-                    borrowTypepop.setHeight(RelativeLayout.LayoutParams.WRAP_CONTENT);
-                    borrowTypepop.setBackgroundDrawable(null);
-                    borrowTypepop.showAsDropDown(llBorrowType,0, DensityUtil.dip2px(BorrowServiceActivity.this,5));
-                    view.findViewById(R.id.tv_borrow_money_type_1).setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            etBorrowType.setText("车辆抵押贷款");
-                            borrowTypepop.dismiss();
-                        }
-                    });
-                    view.findViewById(R.id.tv_borrow_money_type_2).setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            etBorrowType.setText("企事业公务员信用贷款");
-                            borrowTypepop.dismiss();
-                        }
-                    });
-                    view.findViewById(R.id.tv_borrow_money_type_3).setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            etBorrowType.setText("二手车分期贷款");
-                            borrowTypepop.dismiss();
-                        }
-                    });
-                    view.findViewById(R.id.tv_borrow_money_type_4).setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            etBorrowType.setText("新车分期贷款");
-                            borrowTypepop.dismiss();
-                        }
-                    });
-                    borrowTypepop.setOutsideTouchable(true);
-                break;
                 case R.id.ll_city:
 
                     break;
@@ -331,17 +457,133 @@ public class BorrowServiceActivity extends AppCompatActivity {
                 case R.id.ll_mobile:
 
                     break;
+                case R.id.tv_getTextCode:
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            for (int i = 59; i >= 0; i--) {
+                                Message msg = handler.obtainMessage();
+                                msg.arg1 = i;
+                                handler.sendMessage(msg);
+                                try {
+                                    Thread.sleep(1000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                    }).start();
+                    break;
             }
         }
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        if (borrowTypepop!=null&&borrowTypepop.isShowing()){
-            borrowTypepop.dismiss();
-            borrowTypepop=null;
+    private class CheckVerifyResponseHandler extends AsyncHttpResponseHandler {
+        @Override
+        public void onSuccess(int i, String s) {
+            super.onSuccess(i, s);
+            Log.d(TAG, "CheckVerifyResponseHandler: "+s);
+            if (s.equals("\"img_code_verfi_fail\"")){
+                llSmsCode.setVisibility(View.VISIBLE);
+                btnConfirm2.setVisibility(View.VISIBLE);
+                btnConfirm1.setVisibility(View.GONE);
+                tvGetTextCode.setVisibility(View.VISIBLE);
+                llRefreshVerify.setVisibility(View.GONE);
+                llVerify.setVisibility(View.GONE);
+                getSmsCode();
+            }
         }
-        return super.onTouchEvent(event);
-
     }
+
+    private void checkMobile(){
+        String mobile = etMobile.getText().toString().trim();
+        RequestParams params = new RequestParams();
+        params.put("mobile",mobile);
+        HttpClient.post(BorrowServiceActivity.this,"http://mb.xidaiw.com/loan/checkphone",params,new CheckMobileResponseHandler());
+    }
+
+    private class CheckMobileResponseHandler extends AsyncHttpResponseHandler {
+        @Override
+        public void onSuccess(int i, String s) {
+            super.onSuccess(i, s);
+            Log.d(TAG, "CheckMobileResponseHandler: "+s);
+            if (s.equals("\"mobile_have_register\"")){
+                Toast.makeText(BorrowServiceActivity.this, "该手机号已经注册过了!", Toast.LENGTH_SHORT).show();
+                return;
+            }else if (s.equals("\"mobile_no_register\"")){
+                RequestParams params=new RequestParams();
+                params.put("mortgage",type);
+                params.put("city",city);
+                params.put("mobile",mobile);
+                params.put("verify",verify);
+                params.put("sex",sex);
+                HttpClient.post(BorrowServiceActivity.this, "http://mb.xidaiw.com/Index/loan",params,new CheckVerifyResponseHandler());
+            }
+        }
+    }
+
+    private class CheckSmsCodeResponseHandler extends AsyncHttpResponseHandler {
+        @Override
+        public void onSuccess(int i, String s) {
+            super.onSuccess(i, s);
+            Log.d(TAG, "CheckSmsCodeResponseHandler: "+s);
+            if (s.equals("\"sms_code_verfi_fail\"")){
+                Toast.makeText(BorrowServiceActivity.this, "短信密码不正确!", Toast.LENGTH_SHORT).show();
+                return;
+            }else if (s.equals("\"sms_code_overtime\"")){
+                Toast.makeText(BorrowServiceActivity.this, "短信密码已失效,请重新获取!", Toast.LENGTH_SHORT).show();
+                return;
+            }else if (s.equals("\"sms_code_verfi_ture\"")){
+                AlertDialog.Builder dialog=new AlertDialog.Builder(BorrowServiceActivity.this);
+                dialog.setMessage("你已经申请成功，稍后喜袋网工作人员和你联系，请保持手机畅通！");
+                dialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        finish();
+                    }
+                });
+                dialog.show();
+            }
+        }
+    }
+
+    private class GetSmsCodeResponseHandler extends AsyncHttpResponseHandler {
+        @Override
+        public void onSuccess(int i, String s) {
+            super.onSuccess(i, s);
+            Log.d(TAG, "GetSmsCodeResponseHandler: "+s);
+            if (s.equals("\"code_send_success\"")){
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        for (int i = 59; i >= 0; i--) {
+                            Message msg = handler.obtainMessage();
+                            msg.arg1 = i;
+                            handler.sendMessage(msg);
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }).start();
+            }else{
+                Toast.makeText(BorrowServiceActivity.this, "获取短息密码失败!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+        }
+    }
+
+//    @Override
+//    public boolean onTouchEvent(MotionEvent event) {
+//        if (borrowTypePop!=null&&borrowTypePop.isShowing()){
+//            borrowTypePop.dismiss();
+//            borrowTypePop=null;
+//        }
+//        return super.onTouchEvent(event);
+//
+//    }
 }
