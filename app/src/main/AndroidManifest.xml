@@ -114,7 +114,8 @@
         <activity android:name="xidaiw.find.activity.HelpCenterActivity" />
         <activity android:name="xidaiw.find.activity.BorrowServiceActivity" />
         <activity android:name="xidaiw.find.activity.Attention2WxActivity" />
-        <activity android:name="xidaiw.find.activity.NewsCenterActivity"></activity>
+        <activity android:name="xidaiw.find.activity.NewsCenterActivity" />
+        <activity android:name="xidaiw.licai.activity.LoanDetailActivity"></activity>
     </application>
 
 </manifest>

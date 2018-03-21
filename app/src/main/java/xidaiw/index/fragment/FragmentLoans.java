@@ -2,6 +2,7 @@ package xidaiw.index.fragment;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
@@ -23,13 +25,13 @@ import com.xidaiw.btj.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import xidaiw.licai.activity.LoanDetailActivity;
 import xidaiw.licai.adapter.LoansAdapter;
 import xidaiw.licai.bean.LoanPageAdapter;
+import xidaiw.util.GlobalUtils;
 import xidaiw.util.HttpClient;
 import xidaiw.util.Urls;
 import xidaiw.widget.RoundProgressBar;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,12 +41,13 @@ public class FragmentLoans extends Fragment {
     //当前页
     private int currenPage=1;
     private boolean isNotPull = true;
-    private List<LoanPageAdapter.DataBean.ListBean> loanList;
+    private List<LoanPageAdapter.DataBean.List1Bean> loanList;
     private int pageSize=10;
     private RoundProgressBar roundProgressBar,roundProgressBar2;
     LoansAdapter adapter=null;
     private View newHand=null;
-
+    private int newhandIndex=0;
+    private static final String TAG = "FragmentLoans";
     public FragmentLoans() {
         // Required empty public constructor
     }
@@ -77,9 +80,9 @@ public class FragmentLoans extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position,
                                     long arg3) {
-//                Intent intent = new Intent(getActivity(),LoanDetailActivity.class);
-//                intent.putExtra("loanId", loanList.get(position-1).getId());
-//                getActivity().startActivity(intent);
+                Intent intent = new Intent(getActivity(),LoanDetailActivity.class);
+                intent.putExtra("productId", loanList.get(position-2).getId()+"");
+                getActivity().startActivity(intent);
             }
         });
     }
@@ -93,7 +96,6 @@ public class FragmentLoans extends Fragment {
         HttpClient.post(getActivity(), Urls.getHost()+"/product/list", params, new LoansAsyncResponseHandler());
     }
     class LoanListOnRefreshListener2<ListView> implements PullToRefreshBase.OnRefreshListener2 {
-
         //手指下滑，加载上一页
         @Override
         public void onPullDownToRefresh(PullToRefreshBase refreshView){
@@ -106,7 +108,6 @@ public class FragmentLoans extends Fragment {
                 }
             }
             RefreshLoanlist();
-
         }
         //手指上滑,加载下一页
         @Override
@@ -128,22 +129,58 @@ public class FragmentLoans extends Fragment {
             LoanPageAdapter loanPageAdapter = JSON.parseObject(json,LoanPageAdapter.class);
             LoanPageAdapter.DataBean data = loanPageAdapter.getData();
             ArrayList<LoanPageAdapter.DataBean.ListBean> list = data.getList();
-            if(list.size()==0){
+            List<LoanPageAdapter.DataBean.List1Bean> list1 = data.getList1();
+            if(list1.size()==0){
                 Toast.makeText(getActivity(), "无更多数据！", Toast.LENGTH_LONG).show();
                 return;
             }
             if(loanList==null){
-                loanList = new ArrayList<LoanPageAdapter.DataBean.ListBean>();
+                loanList = new ArrayList<LoanPageAdapter.DataBean.List1Bean>();
                 Log.i("FragmentLoans",loanList.toString());
             }
-            loanList.addAll(list);
+            loanList.addAll(list1);
             if(adapter==null){
                 adapter = new LoansAdapter(getActivity(),loanList);
             }
             if(isNotPull){//第二页无需重新绑定
-                newHand = LayoutInflater.from(getActivity()).inflate(R.layout.productlist_item_newhand, null);
-                listView.getRefreshableView().addHeaderView(newHand);
-                Toast.makeText(getActivity(), "我是...", Toast.LENGTH_SHORT).show();
+                if (newHand==null){
+                    newHand = LayoutInflater.from(getActivity()).inflate(R.layout.productlist_item_newhand, null);
+                    TextView recommendProductName=newHand.findViewById(R.id.tv_rd_productName);
+                    TextView recommendInterest=newHand.findViewById(R.id.tv_rd_interest);
+                    TextView recommendAmount=newHand.findViewById(R.id.tv_rd_amount);
+                    TextView recommendDuration=newHand.findViewById(R.id.tv_rd_duration);
+                    TextView recommendSales=newHand.findViewById(R.id.tv_rd_sales);
+                    TextView recommendRemain=newHand.findViewById(R.id.tv_rd_remain);
+                    for (int i=0;i<=10;i++){
+                        if("短期体验产品".equals(loanList.get(i).getProductTypeName())){
+                            newhandIndex=i;
+                            Log.d(TAG, "newhandIndex: "+i);
+                            //recommendProductName.setText(loanList.get(i).getProductName().split("第")[0]);
+                            recommendProductName.setText(loanList.get(i).getProductName());
+                            recommendInterest.setText(GlobalUtils.NumberFormatTranferTwo(loanList.get(i).getInterest()+""));
+                            recommendAmount.setText(GlobalUtils.NumberFormatTransfer(loanList.get(i).getTotalAmount()+""));
+                            recommendDuration.setText(loanList.get(i).getMaturityDuration());
+                            recommendSales.setText("已投 "+loanList.get(i).getSaleAmount()+" 份");
+                            recommendRemain.setText("剩余 "+loanList.get(i).getRemainingAmount()+" 份");
+                            newHand.findViewById(R.id.btn_rd_invest).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent =new Intent(getActivity(),LoanDetailActivity.class);
+                                    intent.putExtra("productId",loanList.get(newhandIndex).getId()+"");
+                                    startActivity(intent);
+                                }
+                            });
+                            loanList.remove(i);
+                            break;
+                        }
+                    }
+
+                    listView.getRefreshableView().addHeaderView(newHand);
+                    //loanList.remove(0);
+
+                }
+                //loanList.remove(0);
+                Log.d(TAG, "loanList: "+loanList.toString());
                 listView.setAdapter(adapter);
             }
             adapter.notifyDataSetChanged();
