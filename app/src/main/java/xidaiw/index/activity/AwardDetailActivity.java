@@ -4,9 +4,9 @@ import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.widget.FrameLayout;
@@ -22,7 +22,7 @@ import xidaiw.index.frag.AwardFragment1;
 import xidaiw.index.frag.AwardFragment2;
 import xidaiw.index.frag.AwardFragment3;
 
-public class AwardDetailActivity extends FragmentActivity implements View.OnClickListener{
+public class AwardDetailActivity extends AppCompatActivity implements View.OnClickListener{
     private int item;
     private TextView tvTitle;
     private ImageView ivBack;
@@ -43,11 +43,11 @@ public class AwardDetailActivity extends FragmentActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_award_detail);
-        tvTitle=findViewById(R.id.tv_header);
-        vp=findViewById(R.id.vp_award_detail);
-        ivInviteToLeft=findViewById(R.id.invite_to_left);
-        ivInviteToRight=findViewById(R.id.invite_to_right);
-        ivBack=findViewById(R.id.iv_back);
+        tvTitle= (TextView) findViewById(R.id.tv_header);
+        vp= (ViewPager) findViewById(R.id.vp_award_detail);
+        ivInviteToLeft= (ImageView) findViewById(R.id.invite_to_left);
+        ivInviteToRight= (ImageView) findViewById(R.id.invite_to_right);
+        ivBack= (ImageView) findViewById(R.id.iv_back);
         tvTitle.setText("邀请有礼");
         ivBack.setImageResource(R.mipmap.back_left);
         list=new ArrayList<Fragment>(3);

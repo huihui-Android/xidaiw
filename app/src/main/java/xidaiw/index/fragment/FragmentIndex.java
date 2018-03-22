@@ -67,6 +67,7 @@ public class FragmentIndex extends Fragment {
     private TextView tvNewhandInterest,tvNewhandDuration,tvNewhandRemain;
     private Button btnBuyNow;
     private LinearLayout llBuy;
+    private TextView tvTransactionAmount,tvUnpayCapital,tvSafeManageDays;
     public FragmentIndex() {
         // Required empty public constructor
     }
@@ -120,6 +121,9 @@ public class FragmentIndex extends Fragment {
         tvNewhandRemain=getActivity().findViewById(R.id.tv_newhand_remain);
         llBuy=getActivity().findViewById(R.id.buy);
         btnBuyNow=getActivity().findViewById(R.id.btn_buyNow);
+        tvTransactionAmount=getActivity().findViewById(R.id.tv_Transaction_amount);
+        tvUnpayCapital=getActivity().findViewById(R.id.tv_unpay_capital);
+        tvSafeManageDays=getActivity().findViewById(R.id.tv_safe_manage);
     }
 
     public void queryIndexData(){

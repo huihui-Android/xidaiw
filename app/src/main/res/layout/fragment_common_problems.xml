@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:paddingBottom="80dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_marginTop="20dp"
+                android:textSize="13sp"
+                android:textColor="@color/primary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1.产品收益多少?" />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:paddingLeft="10dp"
+                android:textSize="12sp"
+                android:textColor="#535353"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="喜袋网理财产品按不同类型,收益区间7%-12%。" />
+            <View
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="#eeeeee"/>
+            <TextView
+                android:layout_marginTop="20dp"
+                android:textSize="13sp"
+                android:textColor="@color/primary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2.节假日是否有收益？" />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:paddingLeft="10dp"
+                android:textSize="12sp"
+                android:textColor="#535353"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="成功认购的资产本金在节假日期间也将获得收益。" />
+            <View
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="#eeeeee"/>
+            <TextView
+                android:layout_marginTop="20dp"
+                android:textSize="13sp"
+                android:textColor="@color/primary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="3.投资人在喜袋网APP上理财需要承担哪些费用?" />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:paddingLeft="10dp"
+                android:textSize="12sp"
+                android:textColor="#535353"
+                android:lineSpacingExtra="6.5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="喜袋网从2017年9月27日开始收取体现费用:2元/笔;同时收取利息的10%作为中介信息服务费,每月首次提现不收取手续费。" />
+            <View
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="#eeeeee"/>
+            <TextView
+                android:layout_marginTop="20dp"
+                android:textSize="13sp"
+                android:textColor="@color/primary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="4.项目计息时间是怎样的?" />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:paddingLeft="10dp"
+                android:textSize="12sp"
+                android:textColor="#535353"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="满标后第二日开始计息。" />
+            <View
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="#eeeeee"/>
+            <TextView
+                android:layout_marginTop="20dp"
+                android:textSize="13sp"
+                android:textColor="@color/primary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="5.项目到期汇款后如何提现?" />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:paddingLeft="10dp"
+                android:textSize="12sp"
+                android:textColor="#535353"
+                android:lineSpacingExtra="6.5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="我们现在的产品是到期次日的6点,本息返回您的账户余额。" />
+            <View
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="#eeeeee"/>
+            <TextView
+                android:layout_marginTop="20dp"
+                android:textSize="13sp"
+                android:textColor="@color/primary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="6.在喜袋网理财平台投资安全吗?" />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:paddingLeft="10dp"
+                android:lineSpacingExtra="6.5dp"
+                android:textSize="12sp"
+                android:textColor="#535353"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="喜袋网账户资金安全由第三方支付全程监管、项目信息公开、透明、原始债权人到期回购债权。" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

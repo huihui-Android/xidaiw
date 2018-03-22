@@ -3,131 +3,197 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f2f2f2"
-    android:orientation="vertical"
-    tools:context="xidaiw.index.fragment.FragmentIndex">
-
-    <!--<include layout="@layout/header_index" />-->
+    android:orientation="vertical">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
-            <!-- TODO: Update blank fragment layout -->
-            <FrameLayout
-
+            <RelativeLayout
+                android:background="@color/white"
                 android:layout_width="match_parent"
-                android:layout_height="235dp">
+                android:layout_height="308dp">
                 <xidaiw.widget.AutoScrollViewPager
                     android:id="@+id/asvp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
+                    android:layout_height="197dp">
                 </xidaiw.widget.AutoScrollViewPager>
-
                 <LinearLayout
+                    android:layout_centerHorizontal="true"
+                    android:layout_above="@+id/ll_newhand_invite_msg_sigin"
                     android:id="@+id/ll_dot"
+                    android:paddingBottom="6dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|center"
-                    android:layout_marginBottom="40dp"
                     android:orientation="horizontal">
-
                 </LinearLayout>
-            </FrameLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="73dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginTop="-32dp"
-                android:background="@drawable/index_top_shape"
-                android:clickable="true"
-                android:orientation="vertical">
-
                 <LinearLayout
+                    android:id="@+id/ll_newhand_invite_msg_sigin"
+                    android:layout_above="@+id/ll_static_data"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingTop="7dp">
-
-                    <ImageView
-                        android:id="@+id/iv_newhandGuide"
-                        android:layout_width="wrap_content"
+                    android:layout_height="73dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/index_top_shape"
+                    android:clickable="true"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:src="@mipmap/guide_index" />
+                        android:orientation="horizontal"
+                        android:paddingTop="7dp">
 
-                    <ImageView
-                        android:id="@+id/iv_invite"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:src="@mipmap/invite_index" />
+                        <ImageView
+                            android:id="@+id/iv_newhandGuide"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:src="@mipmap/guide_index" />
 
-                    <ImageView
-                        android:id="@+id/iv_messageCenter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:src="@mipmap/message_index" />
+                        <ImageView
+                            android:id="@+id/iv_invite"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:src="@mipmap/invite_index" />
 
-                    <ImageView
-                        android:id="@+id/iv_sigin"
-                        android:layout_width="wrap_content"
+                        <ImageView
+                            android:id="@+id/iv_messageCenter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:src="@mipmap/message_index" />
+
+                        <ImageView
+                            android:id="@+id/iv_sigin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:src="@mipmap/signin" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:src="@mipmap/signin" />
+                        android:orientation="horizontal"
+                        android:paddingTop="5dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="新人引导"
+                            android:textAlignment="center"
+                            android:textColor="@color/black2"
+                            android:textSize="@dimen/ps" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="邀请有礼"
+                            android:textAlignment="center"
+                            android:textColor="@color/black2"
+                            android:textSize="@dimen/ps" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="消息中心"
+                            android:textAlignment="center"
+                            android:textColor="@color/black2"
+                            android:textSize="@dimen/ps" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="签到"
+                            android:textAlignment="center"
+                            android:textColor="@color/black2"
+                            android:textSize="@dimen/ps" />
+                    </LinearLayout>
                 </LinearLayout>
-
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/ll_static_data"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="15dp"
+                    android:layout_alignParentBottom="true"
                     android:orientation="horizontal"
-                    android:paddingTop="5dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:gravity="center"
                         android:layout_weight="1"
-                        android:text="新人引导"
-                        android:textAlignment="center"
-                        android:textColor="@color/black2"
-                        android:textSize="@dimen/ps" />
-
-                    <TextView
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:textSize="12sp"
+                            android:textColor="#535353"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="交易总额"/>
+                        <TextView
+                            android:id="@+id/tv_Transaction_amount"
+                            android:paddingTop="10dp"
+                            android:textSize="12sp"
+                            android:textColor="@color/primary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3544,555.0"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:gravity="center"
                         android:layout_weight="1"
-                        android:text="邀请有礼"
-                        android:textAlignment="center"
-                        android:textColor="@color/black2"
-                        android:textSize="@dimen/ps" />
-
-                    <TextView
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:textSize="12sp"
+                            android:textColor="#535353"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="待收金额"/>
+                        <TextView
+                            android:id="@+id/tv_unpay_capital"
+                            android:paddingTop="10dp"
+                            android:textSize="12sp"
+                            android:textColor="@color/primary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="31544,555.0"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:gravity="center"
                         android:layout_weight="1"
-                        android:text="消息中心"
-                        android:textAlignment="center"
-                        android:textColor="@color/black2"
-                        android:textSize="@dimen/ps" />
-
-                    <TextView
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="签到"
-                        android:textAlignment="center"
-                        android:textColor="@color/black2"
-                        android:textSize="@dimen/ps" />
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:textSize="12sp"
+                            android:textColor="#535353"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="安全运营"/>
+                        <TextView
+                            android:id="@+id/tv_safe_manage"
+                            android:paddingTop="10dp"
+                            android:textSize="12sp"
+                            android:textColor="@color/primary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="266天"/>
+                    </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
+            </RelativeLayout>
+
+
+
 
             <LinearLayout
 

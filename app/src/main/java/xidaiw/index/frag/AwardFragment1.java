@@ -21,8 +21,7 @@ public class AwardFragment1 extends Fragment {
     private String html2="3.<font color=#ff350d>奖励为现金红包,可直接提现</font>,将于T+1个工作日发放到喜袋网账户中;";
     private TextView textView1;
     private TextView textView2;
-    public AwardFragment1() {
-    }
+    public AwardFragment1() {}
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
