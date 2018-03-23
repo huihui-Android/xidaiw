@@ -31,10 +31,9 @@ import xidaiw.index.activity.BannerViewActivity;
 import xidaiw.index.activity.InviteAwardActivity;
 import xidaiw.index.activity.MessageCenter;
 import xidaiw.index.activity.NewhandGuideActivity;
-import xidaiw.index.entity.BannerListBean;
-import xidaiw.index.entity.DataBean;
+import xidaiw.index.entity.IndexRecommendInfo;
 import xidaiw.index.entity.ProductBean;
-import xidaiw.index.entity.adapter.BannerPageAdapter2;
+import xidaiw.licai.activity.LoanDetailActivity;
 import xidaiw.licai.bean.LoanPageAdapter;
 import xidaiw.util.DensityUtil;
 import xidaiw.util.GlobalUtils;
@@ -51,10 +50,10 @@ public class FragmentIndex extends Fragment {
     //轮播图和点
     private AutoScrollViewPager autoScrollViewPager;
     private LinearLayout llDot;
-    private List<BannerListBean> bannerList=new ArrayList<BannerListBean>();
     private ProductBean product;
     private static final String TAG="FragmentIndex";
     //推荐标的信息
+    private LinearLayout llRecommendBid;
     private TextView productTitle;
     private TextView productLimit;
     private TextView productInterest1;
@@ -65,9 +64,10 @@ public class FragmentIndex extends Fragment {
     private ImageView ivMessageCenter;
     private ImageView ivSigin;
     private TextView tvNewhandInterest,tvNewhandDuration,tvNewhandRemain;
-    private Button btnBuyNow;
-    private LinearLayout llBuy;
+    private Button btnBuyNow,btnBuyNewhand;
     private TextView tvTransactionAmount,tvUnpayCapital,tvSafeManageDays;
+    private List<IndexRecommendInfo.DataBean.BannerListBean> bannerList;
+
     public FragmentIndex() {
         // Required empty public constructor
     }
@@ -87,14 +87,22 @@ public class FragmentIndex extends Fragment {
         ImageLoader.getInstance().init(configuration);
         queryIndexData();
         newHandData();
+        recommend180Bid();
         //绑定点击事件
         IndexOnclickListener listener=new IndexOnclickListener();
         ivNewhandGuide.setOnClickListener(listener);
         ivInvite.setOnClickListener(listener);
         ivMessageCenter.setOnClickListener(listener);
         ivSigin.setOnClickListener(listener);
-        llBuy.setOnClickListener(listener);
         btnBuyNow.setOnClickListener(listener);
+    }
+
+    private void recommend180Bid() {
+        RequestParams params=new RequestParams();
+        params.put("productChannelId","2");
+        params.put("pageNow","1");
+        params.put("pageSize","20");
+        HttpClient.post(getActivity(),Urls.getHost()+"/product/list",params,new RecommendBidResponseHandler());
     }
 
     private void newHandData() {
@@ -119,11 +127,12 @@ public class FragmentIndex extends Fragment {
         tvNewhandDuration=getActivity().findViewById(R.id.tv_newhand_duration);
         tvNewhandInterest=getActivity().findViewById(R.id.tv_newhand_interest);
         tvNewhandRemain=getActivity().findViewById(R.id.tv_newhand_remain);
-        llBuy=getActivity().findViewById(R.id.buy);
         btnBuyNow=getActivity().findViewById(R.id.btn_buyNow);
         tvTransactionAmount=getActivity().findViewById(R.id.tv_Transaction_amount);
         tvUnpayCapital=getActivity().findViewById(R.id.tv_unpay_capital);
         tvSafeManageDays=getActivity().findViewById(R.id.tv_safe_manage);
+        btnBuyNewhand=getActivity().findViewById(R.id.btn_buy_newhand);
+        llRecommendBid=getActivity().findViewById(R.id.ll_recommend_bid);
     }
 
     public void queryIndexData(){
@@ -135,29 +144,24 @@ public class FragmentIndex extends Fragment {
     private class BanneAsyncHttpResponseHandler extends AsyncHttpResponseHandler {
         public void onSuccess(int arg0, String json) {
             super.onSuccess(arg0, json);
-            BannerPageAdapter2 bannerPageAdapter = JSON.parseObject(json,BannerPageAdapter2.class);
             Log.i("FragmentIndex",json);
-            DataBean dataBean = bannerPageAdapter.getData();
-            bannerList = dataBean.getBannerList();
-            product = dataBean.getProduct();
-            String productName = product.getProductName();
-            double interest = product.getInterest();
-            String str=interest+"";
-            str.substring(0,str.indexOf("."));
-            String maturityDuration = product.getMaturityDuration();
-            productTitle.setText(productName);
-            productInterest1.setText(str.substring(0,str.indexOf(".")));
-            productInterest2.setText(str.substring(str.indexOf("."))+"%");
-            productLimit.setText(maturityDuration);
-            Log.i("FragmentIndex", bannerList.toString());
+            IndexRecommendInfo indexRecommendInfo = JSON.parseObject(json, IndexRecommendInfo.class);
+            IndexRecommendInfo.DataBean data = indexRecommendInfo.getData();
+            bannerList = data.getBannerList();
+            double nowInverstPoint = data.getNowInverstPoint();//待收金额
+            int registerStaistices = data.getRegisterStaistices();//交易总额
+            int day = data.getDay();//安全运营天数
+            tvTransactionAmount.setText(GlobalUtils.NumberFormatTranferTwo(registerStaistices+""));
+            tvUnpayCapital.setText(GlobalUtils.NumberFormatTranferTwo(nowInverstPoint+""));
+            tvSafeManageDays.setText(day+"天");
             if(bannerList !=null){
-                BannerAdapter bannerAdapter = new BannerAdapter(getActivity().getLayoutInflater(), bannerList);
+                BannerAdapter bannerAdapter = new BannerAdapter(getActivity().getLayoutInflater(), FragmentIndex.this.bannerList);
                 autoScrollViewPager.setAdapter(bannerAdapter);//利用适配器进行数据的绑定
-                autoScrollViewPager.setScrollFactor(bannerList.size());
-                autoScrollViewPager.setOffscreenPageLimit(bannerList.size()-1);//缓存4个
+                autoScrollViewPager.setScrollFactor(FragmentIndex.this.bannerList.size());
+                autoScrollViewPager.setOffscreenPageLimit(FragmentIndex.this.bannerList.size()-1);//缓存4个
                 autoScrollViewPager.startAutoScroll(3000);//3秒自动翻转
                 //初始化点
-                for (int i = 0; i < bannerList.size(); i++){
+                for (int i = 0; i < FragmentIndex.this.bannerList.size(); i++){
                     ImageView image =  new ImageView(getActivity());
                     LinearLayout.LayoutParams margin = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                             LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -173,7 +177,7 @@ public class FragmentIndex extends Fragment {
                 //图片切换时改变点的显示效果
                 autoScrollViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                     public void onPageSelected(int index) {
-                        for(int i = 0; i< bannerList.size(); i++){
+                        for(int i = 0; i< FragmentIndex.this.bannerList.size(); i++){
                             if(index == i){
                                 llDot.getChildAt(i).setBackgroundResource(R.drawable.viewpager_dot_able);
                             }else{
@@ -193,7 +197,7 @@ public class FragmentIndex extends Fragment {
                 autoScrollViewPager.setOnPageClickListener(new AutoScrollViewPager.OnPageClickListener(){
                     public void onPageClick(AutoScrollViewPager autoScrollPager, int position) {
                         /** 暂时去掉轮播图跳转*/
-                        String url = bannerList.get(position).getHtmlURL();//获取跳转链接
+                        String url = FragmentIndex.this.bannerList.get(position).getHtmlURL();//获取跳转链接
                         Intent intent=new Intent(getActivity(), BannerViewActivity.class);
                         intent.putExtra("url",url);
                         startActivity(intent);
@@ -247,16 +251,63 @@ public class FragmentIndex extends Fragment {
             LoanPageAdapter loanPageAdapter = JSON.parseObject(s, LoanPageAdapter.class);
             if (loanPageAdapter.isSuccess()){
                 LoanPageAdapter.DataBean data = loanPageAdapter.getData();
-                ArrayList<LoanPageAdapter.DataBean.ListBean> list = data.getList();
+                final ArrayList<LoanPageAdapter.DataBean.ListBean> list = data.getList();
                 for (int j = 0; j <list.size(); j++) {
                     if ("短期体验产品".equals(list.get(j).getProductTypeName()) && list.get(j).getRemainingAmount()>0){
                         tvNewhandInterest.setText(GlobalUtils.NumberFormatTranferTwo(list.get(j).getInterest()+""));
                         tvNewhandDuration.setText(list.get(j).getMaturityDuration());
                         tvNewhandRemain.setText("剩余"+ GlobalUtils.NumberFormatTransfer(list.get(j).getRemainingAmount()*100+"")+"元");
+                        final int id=j;
+                        btnBuyNewhand.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent=new Intent(getActivity(), LoanDetailActivity.class);
+                                intent.putExtra("productId",list.get(id).getId()+"");
+                                startActivity(intent);
+                            }
+                        });
                         break;
                     }
                 }
             }
+        }
+    }
+
+    private class RecommendBidResponseHandler extends AsyncHttpResponseHandler {
+        @Override
+        public void onSuccess(int i, String s) {
+            super.onSuccess(i, s);
+            Log.d(TAG, "onSuccess: "+s);
+            LoanPageAdapter loanPageAdapter = JSON.parseObject(s, LoanPageAdapter.class);
+            if (loanPageAdapter.isSuccess()){
+                final List<LoanPageAdapter.DataBean.List1Bean> list1 = loanPageAdapter.getData().getList1();
+                for (int j=0;j<=15;j++){
+                    if(list1.get(j).getMaturityDuration().equals("180天")&&list1.get(j).getProductStatus().equals("SALES")){
+                        llRecommendBid.setVisibility(View.VISIBLE);
+                        final int id=j;
+                        productTitle.setText(list1.get(j).getProductName());
+                        productLimit.setText(list1.get(j).getMaturityDuration());
+                        String interest = list1.get(j).getInterest() + "";
+                        if (interest.indexOf(".")!=-1){
+                            productInterest1.setText(interest.substring(0,interest.indexOf(".")));
+                            productInterest2.setText(interest.substring(interest.indexOf("."))+"%");
+                        }else {
+                            productInterest1.setText(interest);
+                            productInterest2.setText("%");
+                        }
+                        btnBuyNow.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent=new Intent(getActivity(),LoanDetailActivity.class);
+                                intent.putExtra("productId",list1.get(id).getId()+"");
+                                startActivity(intent);
+                            }
+                        });
+                        return;
+                    }
+                }
+            }
+
         }
     }
 }

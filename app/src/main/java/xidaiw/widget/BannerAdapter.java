@@ -12,15 +12,15 @@ import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 
 import java.util.List;
 
-import xidaiw.index.entity.BannerListBean;
+import xidaiw.index.entity.IndexRecommendInfo;
 
 public class BannerAdapter extends PagerAdapter {
 
 	private DisplayImageOptions options = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisk(true)
 			.imageScaleType(ImageScaleType.IN_SAMPLE_INT).build();
-	private List<BannerListBean> imgs;
+	private List<IndexRecommendInfo.DataBean.BannerListBean> imgs;
 
-	public BannerAdapter(LayoutInflater mInflater, List<BannerListBean> imgs) {
+	public BannerAdapter(LayoutInflater mInflater, List<IndexRecommendInfo.DataBean.BannerListBean> imgs) {
 		this.imgs = imgs;
 	}
 

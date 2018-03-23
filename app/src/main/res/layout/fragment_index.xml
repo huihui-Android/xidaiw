@@ -1,5 +1,4 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f2f2f2"
@@ -19,7 +18,7 @@
                 <xidaiw.widget.AutoScrollViewPager
                     android:id="@+id/asvp"
                     android:layout_width="match_parent"
-                    android:layout_height="197dp">
+                    android:layout_height="200dp">
                 </xidaiw.widget.AutoScrollViewPager>
                 <LinearLayout
                     android:layout_centerHorizontal="true"
@@ -45,28 +44,24 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:paddingTop="7dp">
-
                         <ImageView
                             android:id="@+id/iv_newhandGuide"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:src="@mipmap/guide_index" />
-
                         <ImageView
                             android:id="@+id/iv_invite"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:src="@mipmap/invite_index" />
-
                         <ImageView
                             android:id="@+id/iv_messageCenter"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:src="@mipmap/message_index" />
-
                         <ImageView
                             android:id="@+id/iv_sigin"
                             android:layout_width="wrap_content"
@@ -120,7 +115,7 @@
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/ll_static_data"
-                    android:paddingTop="20dp"
+                    android:paddingTop="15dp"
                     android:paddingBottom="15dp"
                     android:layout_alignParentBottom="true"
                     android:orientation="horizontal"
@@ -311,58 +306,52 @@
                         android:text="100元起投"
                         android:textSize="@dimen/ps" />
                 </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/buy"
-                    android:layout_width="243dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="15dp"
+                <Button
+                    android:id="@+id/btn_buy_newhand"
                     android:layout_marginTop="24dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="43dp"
+                    android:layout_marginRight="43dp"
+                    android:layout_height="40dp"
+                    android:clickable="true"
                     android:background="@drawable/btn_shape"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="立即抢购"
-                        android:textColor="@color/white"
-                        android:textSize="15sp" />
-                </LinearLayout>
-
+                    android:text="立即抢购"
+                    android:textSize="15sp"
+                    android:textColor="@color/white"
+                    />
 
             </LinearLayout>
-
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:gravity="center_vertical"
-                android:paddingBottom="10dp"
-                android:paddingTop="15dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="15dp"
-                    android:src="@mipmap/jx" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="3dp"
-                    android:text="快速投资"
-                    android:textColor="@color/black2"
-                    android:textSize="@dimen/ps" />
-            </LinearLayout>
-
-            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/ll_recommend_bid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
 
+                    android:background="#f2f2f2"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="15dp">
+
+                    <ImageView
+                        android:layout_marginLeft="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp"
+                        android:src="@mipmap/jx" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="3dp"
+                        android:text="快速投资"
+                        android:textColor="@color/black2"
+                        android:textSize="@dimen/ps" />
+                </LinearLayout>
                 <TextView
                     android:id="@+id/productTitle"
                     android:layout_width="match_parent"
