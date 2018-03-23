@@ -23,6 +23,7 @@ import com.alibaba.fastjson.JSON;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.xidaiw.btj.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import xidaiw.mine.entity.RedPacketInfo;
@@ -35,9 +36,10 @@ import xidaiw.util.Urls;
 public class RedPacketUsableFragment extends Fragment {
     private ImageView ivGetTime1,ivGetTime2,ivOverTime1,ivOverTime2;
     private RelativeLayout rlGetTime,rlOverTime;
-    private ListView lv;
+    private ListView listView;
     private TextView tvGetTime,tvOverTime;
     private List<RedPacketInfo.DataBean.ListBean> list;
+    private List<RedPacketInfo.DataBean.ListBean> list2=new ArrayList<>();
     private boolean getTimeFlag=true,overTimeFlag=true;
     private static final String TAG = "RedPacketUsableFragment";
     public RedPacketUsableFragment() {
@@ -61,7 +63,7 @@ public class RedPacketUsableFragment extends Fragment {
         ivGetTime2=activity.findViewById(R.id.iv_getTime_2);
         ivOverTime1=activity.findViewById(R.id.iv_overTime_1);
         ivOverTime2=activity.findViewById(R.id.iv_overTime_2);
-        lv=activity.findViewById(R.id.list_view);
+        listView =activity.findViewById(R.id.list_view);
         MyOnclickListener listener = new MyOnclickListener();
         rlGetTime.setOnClickListener(listener);
         rlOverTime.setOnClickListener(listener);
@@ -109,12 +111,12 @@ public class RedPacketUsableFragment extends Fragment {
 
         @Override
         public int getCount() {
-            return list==null?0:list.size();
+            return list2==null?0:list2.size();
         }
 
         @Override
         public Object getItem(int position) {
-            return list==null?0:list.get(position);
+            return list2.get(position);
         }
 
         @Override
@@ -136,22 +138,18 @@ public class RedPacketUsableFragment extends Fragment {
             }else{
                 holder= (ViewHolder) convertView.getTag();
             }
-            if (list!=null){
-                if ("NOT_USED".equals(list.get(position).getTicketUseStatus())){
-                    holder.tvTitle.setText(list.get(position).getTicket().getName());
-                    holder.tvValue.setText(list.get(position).getValue()+"");
-                    holder.tvDuration.setText(list.get(position).getStartDateStr().replace("-", ".")+"-"+list.get(position).getEndDateStr().replace("-", "."));
-                    holder.btnUse.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            HttpClient.get(getActivity(),Urls.getHost()+"/userTickeDetail1?userTicketId="+list.get(position).getId(),new OpenRedPacketResponseHandler());
-                        }
-                    });
-                    return convertView;
-                }
-                return null;
+            if (list2!=null){
+                holder.tvTitle.setText(list2.get(position).getTicket().getName());
+                holder.tvValue.setText(list2.get(position).getValue()+"");
+                holder.tvDuration.setText(list2.get(position).getStartDateStr().replace("-", ".")+"-"+list2.get(position).getEndDateStr().replace("-", "."));
+                holder.btnUse.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        HttpClient.get(getActivity(),Urls.getHost()+"/userTickeDetail1?userTicketId="+list2.get(position).getId(),new OpenRedPacketResponseHandler());
+                    }
+                });
             }
-            return null;
+            return convertView;
         }
     }
 
@@ -163,8 +161,14 @@ public class RedPacketUsableFragment extends Fragment {
             RedPacketInfo redPacketInfo = JSON.parseObject(s, RedPacketInfo.class);
             if (redPacketInfo.isSuccess()){
                 list = redPacketInfo.getData().getList();
+
+                for (int j=0;j<list.size();j++){
+                    if (list.get(j).getTicketUseStatus().equals("NOT_USED")){
+                        list2.add(list.get(j));
+                    }
+                }
                 Log.i(TAG, "onActivityCreated: "+list.size());
-                lv.setAdapter(new MyAdapter());
+                listView.setAdapter(new MyAdapter());
             }else {
                 Toast.makeText(getActivity(), redPacketInfo.getMessage(), Toast.LENGTH_SHORT).show();
             }

@@ -49,7 +49,7 @@ public class InvestRecordGoneFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         FragmentActivity activity = getActivity();
-        listView=activity.findViewById(R.id.list_view);
+        listView=activity.findViewById(R.id.lv);
         HttpClient.get(activity, Urls.getHost()+"/myHistoryPlan1",new InvestRecordGoneResponseHandler());
     }
 

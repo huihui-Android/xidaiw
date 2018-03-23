@@ -45,7 +45,7 @@ public class InviteYzcFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         FragmentActivity activity = getActivity();
-        recyclerView=activity.findViewById(R.id.rv_recycler_view);
+        recyclerView=activity.findViewById(R.id.rv_recycler);
         LinearLayoutManager layoutManager=new LinearLayoutManager(activity);
         recyclerView.setLayoutManager(layoutManager);
         //recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL));

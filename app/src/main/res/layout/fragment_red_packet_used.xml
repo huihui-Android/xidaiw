@@ -81,7 +81,7 @@
         </RelativeLayout>
     </LinearLayout>
     <ListView
-        android:id="@+id/list_view"
+        android:id="@+id/list_view_used"
         android:scrollbars="none"
         android:layout_width="match_parent"
         android:divider="@null"

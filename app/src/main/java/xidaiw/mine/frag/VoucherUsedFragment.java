@@ -23,6 +23,7 @@ import com.alibaba.fastjson.JSON;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.xidaiw.btj.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import xidaiw.mine.entity.VoucherInfo;
@@ -39,6 +40,7 @@ public class VoucherUsedFragment extends Fragment {
     private TextView tvGetTime,tvOverTime;
     private boolean getTimeFlag=true,overTimeFlag=true;
     private List<VoucherInfo.DataBean.ListBean> list;
+    private List<VoucherInfo.DataBean.ListBean> list2=new ArrayList<>();
     private static final String TAG = "VoucherUsedFragment";
 
     public VoucherUsedFragment() {
@@ -62,7 +64,7 @@ public class VoucherUsedFragment extends Fragment {
         ivGetTime2=activity.findViewById(R.id.iv_getTime_2);
         ivOverTime1=activity.findViewById(R.id.iv_overTime_1);
         ivOverTime2=activity.findViewById(R.id.iv_overTime_2);
-        lv=activity.findViewById(R.id.list_view);
+        lv=activity.findViewById(R.id.list_view_used);
         MyOnclickListener listener = new MyOnclickListener();
         rlGetTime.setOnClickListener(listener);
         rlOverTime.setOnClickListener(listener);
@@ -110,12 +112,12 @@ public class VoucherUsedFragment extends Fragment {
 
         @Override
         public int getCount() {
-            return list ==null?0: list.size();
+            return list2 ==null?0: list2.size();
         }
 
         @Override
         public Object getItem(int position) {
-            return list ==null?0:list.get(position);
+            return list2.get(position);
         }
 
         @Override
@@ -138,17 +140,14 @@ public class VoucherUsedFragment extends Fragment {
             }else{
                 holder= (ViewHolder) convertView.getTag();
             }
-            if (list !=null){
-                if ("已使用".equals(list.get(position).getTicketUseStatus())){
-                    holder.tvTitle.setText(list.get(position).getTicketName());
-                    holder.tvValue.setText(list.get(position).getValue()+"");
-                    holder.tvDuration.setText(list.get(position).getStartDate().replace("-", ".")+"-"+ list.get(position).getEndDate().replace("-", "."));
-                    holder.tvVoucherDesc.setText("满"+list.get(position).getUseLimit()+"元可用... >");
-                    return convertView;
+            if (list2 !=null){
+                    holder.tvTitle.setText(list2.get(position).getTicketName());
+                    holder.tvValue.setText(list2.get(position).getValue()+"");
+                    holder.tvDuration.setText(list2.get(position).getStartDate().replace("-", ".")+"-"+ list2.get(position).getEndDate().replace("-", "."));
+                    holder.tvVoucherDesc.setText("满"+list2.get(position).getUseLimit()+"元可用... >");
+
                 }
-                return null;
-            }
-            return null;
+            return convertView;
         }
     }
 
@@ -161,6 +160,13 @@ public class VoucherUsedFragment extends Fragment {
             if (voucherInfo.isSuccess()){
                 list = voucherInfo.getData().getList();
                 Log.i(TAG, "VoucherAsyncHttpResponseHandler: "+ list.size());
+                if (list!=null){
+                    for (int j=0;j<list.size();j++){
+                        if (list.get(j).getTicketUseStatus().equals("已使用")){
+                            list2.add(list.get(j));
+                        }
+                    }
+                }
                 lv.setAdapter(new MyAdapter());
             }else {
                 Toast.makeText(getActivity(), voucherInfo.getMessage(), Toast.LENGTH_SHORT).show();

@@ -22,11 +22,14 @@ import com.alibaba.fastjson.JSON;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.xidaiw.btj.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import xidaiw.mine.entity.RedPacketInfo;
 import xidaiw.util.HttpClient;
 import xidaiw.util.Urls;
+
+import static android.R.id.list;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,6 +40,7 @@ public class RedPacketUsedFragment extends Fragment {
     private ListView lv;
     private TextView tvGetTime,tvOverTime;
     private List<RedPacketInfo.DataBean.ListBean> list;
+    private List<RedPacketInfo.DataBean.ListBean> list2=new ArrayList<>();
     private boolean getTimeFlag=true,overTimeFlag=true;
     private static final String TAG = "RedPacketUsedFragment";
     public RedPacketUsedFragment() {
@@ -62,7 +66,7 @@ public class RedPacketUsedFragment extends Fragment {
         ivGetTime2=activity.findViewById(R.id.iv_getTime_2);
         ivOverTime1=activity.findViewById(R.id.iv_overTime_1);
         ivOverTime2=activity.findViewById(R.id.iv_overTime_2);
-        lv=activity.findViewById(R.id.list_view);
+        lv=activity.findViewById(R.id.list_view_used);
         MyOnclickListener listener = new MyOnclickListener();
         rlGetTime.setOnClickListener(listener);
         rlOverTime.setOnClickListener(listener);
@@ -110,12 +114,12 @@ public class RedPacketUsedFragment extends Fragment {
 
         @Override
         public int getCount() {
-            return list==null?0:list.size();
+            return list2==null?0:list2.size();
         }
 
         @Override
         public Object getItem(int position) {
-            return list==null?0:list.get(position);
+            return list2.get(position);
         }
 
         @Override
@@ -137,15 +141,12 @@ public class RedPacketUsedFragment extends Fragment {
             }else{
                 holder= (ViewHolder) convertView.getTag();
             }
-            if (list!=null){
-                if ("USED".equals(list.get(position).getTicketUseStatus())){
-                    holder.tvTitle.setText(list.get(position).getTicket().getName());
-                    holder.tvValue.setText(list.get(position).getValue()+"");
-                    holder.tvDuration.setText(list.get(position).getStartDateStr().replace("-", ".")+"-"+list.get(position).getEndDateStr().replace("-", "."));
-                    return convertView;
-                }
+            if (list2!=null){
+                    holder.tvTitle.setText(list2.get(position).getTicket().getName());
+                    holder.tvValue.setText(list2.get(position).getValue()+"");
+                    holder.tvDuration.setText(list2.get(position).getStartDateStr().replace("-", ".")+"-"+list2.get(position).getEndDateStr().replace("-", "."));
             }
-            return null;
+            return convertView;
         }
     }
 
@@ -158,6 +159,13 @@ public class RedPacketUsedFragment extends Fragment {
             if (redPacketInfo.isSuccess()){
                 list = redPacketInfo.getData().getList();
                 Log.i(TAG, "onActivityCreated: "+list.size());
+                if (list!=null){
+                    for (int j=0;j<list.size();j++){
+                        if (list.get(j).getTicketUseStatus().equals("USED")){
+                            list2.add(list.get(j));
+                        }
+                    }
+                }
                 lv.setAdapter(new MyAdapter());
             }else {
                 Toast.makeText(getActivity(), redPacketInfo.getMessage(), Toast.LENGTH_SHORT).show();
