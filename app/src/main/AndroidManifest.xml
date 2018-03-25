@@ -39,7 +39,8 @@
     <application
         android:name="xidaiw.MyApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/icon150x150"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:label="喜袋网_原生"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
