@@ -4,14 +4,9 @@
     <modules>
       <module fileurl="file://D:/android_studio_project/xidaiw/slidemenu/SlidingMenu.iml" filepath="D:/android_studio_project/xidaiw/slidemenu/SlidingMenu.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mylibrary/mylibrary.iml" filepath="$PROJECT_DIR$/mylibrary/mylibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/mylibrary/mylibrary.iml" filepath="$PROJECT_DIR$/mylibrary/mylibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/slidelayout/slidelayout.iml" filepath="$PROJECT_DIR$/slidelayout/slidelayout.iml" />
-      <module fileurl="file://$PROJECT_DIR$/slidelayout/slidelayout.iml" filepath="$PROJECT_DIR$/slidelayout/slidelayout.iml" />
       <module fileurl="file://$PROJECT_DIR$/slidemenu/slidemenu.iml" filepath="$PROJECT_DIR$/slidemenu/slidemenu.iml" />
-      <module fileurl="file://$PROJECT_DIR$/slidemenu/slidemenu.iml" filepath="$PROJECT_DIR$/slidemenu/slidemenu.iml" />
-      <module fileurl="file://$PROJECT_DIR$/xidaiw.iml" filepath="$PROJECT_DIR$/xidaiw.iml" />
       <module fileurl="file://$PROJECT_DIR$/xidaiw.iml" filepath="$PROJECT_DIR$/xidaiw.iml" />
     </modules>
   </component>

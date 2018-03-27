@@ -147,6 +147,12 @@ public class FragmentMine extends Fragment{
             Log.i(TAG, "onSuccess: "+json);
             PersonInfo personInfo = JSON.parseObject(json, PersonInfo.class);
             if(personInfo.isSuccess()){
+                sv_mine.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        return false;
+                    }
+                });
                 rlLogin.setVisibility(View.GONE);
                 ivAvanta.setOnClickListener(onclicks);
                 tvPhone.setOnClickListener(onclicks);
